@@ -1,4 +1,4 @@
-package myseeds.megaleios.com.myseeds;
+package megaleios.com.myseeds;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

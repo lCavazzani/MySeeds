@@ -1,13 +1,12 @@
-package myseeds.megaleios.com.myseeds.Domains.SplashScreen;
+package megaleios.com.myseeds.Domains.SplashScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import myseeds.megaleios.com.myseeds.Domains.Login.Activity.LoginActivity;
-import myseeds.megaleios.com.myseeds.MainActivity;
-import myseeds.megaleios.com.myseeds.R;
+import megaleios.com.myseeds.Domains.Login.Activity.LoginActivity;
+import megaleios.com.myseeds.R;
 
 /**
  * Created by ulyssesboumann on 16/08/17.

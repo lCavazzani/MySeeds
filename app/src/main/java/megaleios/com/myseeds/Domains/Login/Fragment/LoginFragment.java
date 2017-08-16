@@ -1,4 +1,4 @@
-package myseeds.megaleios.com.myseeds.Domains.Login.Fragment;
+package megaleios.com.myseeds.Domains.Login.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import myseeds.megaleios.com.myseeds.R;
+import megaleios.com.myseeds.R;
 
 /**
  * Created by ulyssesboumann on 16/08/17.
