@@ -5,114 +5,143 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/logologin" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center_horizontal"
-        android:lineSpacingExtra="8sp"
-        android:text="Entre com seus dados para continuar"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="normal" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_email"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:textColorHint="#80000000">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/input_email"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/mail"
-            android:drawablePadding="8dp"
-            android:fontFamily="sans-serif-light"
-            android:hint="E-mail"
-            android:inputType="text"
-            android:maxLines="1"
-            android:textColorHint="#80000000"
-            android:textSize="16sp"
-            android:theme="@style/EditTextAppearance" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </android.support.design.widget.TextInputLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/logologin" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:textColorHint="#80000000">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:text="Entre com seus dados para continuar"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="normal" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/senha_2"
-            android:drawablePadding="8dp"
-            android:fontFamily="sans-serif-light"
-            android:hint="Senha"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:textColorHint="#80000000"
-            android:textSize="16sp"
-            android:theme="@style/EditTextAppearance" />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textColorHint="#80000000">
 
-    </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/mail"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif-light"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textColorHint="#80000000"
+                    android:textSize="16sp"
+                    android:theme="@style/EditTextAppearance" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Esqueceu a senha?"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="normal" />
+            </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/button_default"
-        android:fontFamily="sans-serif-medium"
-        android:text="Entrar"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:textStyle="normal" />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textColorHint="#80000000">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/button_facebook"
-        android:fontFamily="sans-serif-medium"
-        android:text="Entrar com Facebook"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:textStyle="normal" />
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/senha_2"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="sans-serif-light"
+                    android:hint="Senha"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColorHint="#80000000"
+                    android:textSize="16sp"
+                    android:theme="@style/EditTextAppearance" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Esqueceu a senha?"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_default"
+                android:fontFamily="sans-serif-medium"
+                android:text="Entrar"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/button_login_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/button_facebook"
+                android:fontFamily="sans-serif-medium"
+                android:text="Entrar com Facebook"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/open_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
+                android:text="Não é cadastrado ainda? Faça seu cadastro."
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
