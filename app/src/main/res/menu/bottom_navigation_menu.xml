@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_explorer"
+        android:enabled="true"
+        android:icon="@drawable/explorar_a"
+        android:title="Explorar"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_notification"
+        android:enabled="true"
+        android:icon="@drawable/notificacoes_a"
+        android:title="Notificações"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_history"
+        android:enabled="true"
+        android:icon="@drawable/historico_a"
+        android:title="Histórico"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_account"
+        android:enabled="true"
+        android:icon="@drawable/conta_a"
+        android:title="Conta"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@drawable/buscab"
+        android:title="Busca"
+        app:showAsAction="ifRoom" />
+</menu>

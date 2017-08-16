@@ -14,6 +14,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import megaleios.com.myseeds.Domains.Forgot.Activity.ForgotActivity;
 import megaleios.com.myseeds.Domains.Register.Activity.RegisterActivity;
+import megaleios.com.myseeds.Domains.Main.Activity.MainActivity;
 import megaleios.com.myseeds.R;
 
 /**
@@ -49,7 +50,8 @@ public class LoginFragment extends Fragment {
 
     @OnClick(R.id.button_login)
     public void login() {
-
+        Intent i = new Intent(getActivity(), MainActivity.class);
+        startActivity(i);
     }
 
     @OnClick(R.id.button_login_facebook)
