@@ -11,8 +11,10 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            >
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,7 +156,110 @@
                 android:textColor="#000000"
                 android:text="Instituições"
                 android:layout_marginTop="16dp"
+                android:id="@+id/instituicao_title"
                 />
+            <android.support.v7.widget.CardView
+                android:id="@+id/instituicao_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/button_material_light"
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_marginLeft="8dp"
+               
+                android:layout_below="@+id/instituicao_title"
+                android:layout_alignEnd="@+id/campanhas_list"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="16dp"
+                >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/campanhas_list"
+                android:layout_below="@+id/instituicao_title"
+               >
+
+                <TextView
+                    android:id="@+id/textmy_int"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Hilsong"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+                <View
+                    android:id="@+id/divider_title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/textmy_int"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#EEE" />
+
+                <TextView
+                    android:id="@+id/textView_int"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_title1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="sans-serif"
+                    android:text="163 contribuicoes"
+                    android:textColor="#ec407a"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_title1"
+                    android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/textView_int"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"
+                    android:text="7 campanhas"
+                    android:textColor="#ec407a"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/divider_title2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/textView_int"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:background="#EEE" />
+
+                <TextView
+                    android:id="@+id/textView2_int"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider_title2"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Vilaggio JK, Rua Funchal 500 - Vila Olimpia CEP 012"
+                    android:textColor="#80000000"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+            </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
         </RelativeLayout>
 
 

@@ -1,8 +1,10 @@
 package megaleios.com.myseeds.Domains.Main.Fragment;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
@@ -18,6 +20,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import megaleios.com.myseeds.Components.SmoothRecyclerView;
+import megaleios.com.myseeds.Domains.Instituicao.Activity.InstituicaoActivity;
+import megaleios.com.myseeds.Domains.Register.Activity.RegisterActivity;
 import megaleios.com.myseeds.Helpers.GridSpacingItemDecoration;
 import megaleios.com.myseeds.R;
 
@@ -41,6 +45,16 @@ public class ExplorerFragment extends Fragment{
 //        mCampanhas.setLayoutManager(linearLayoutManager);
 //        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(12, dpToPx(4), true));
 //        mCampanhas.setItemAnimator(new DefaultItemAnimator());
+
+        CardView card = (CardView) view.findViewById(R.id.instituicao_list);
+
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), InstituicaoActivity.class);
+                startActivity(i);
+            }
+        });
 
         return view;
     }
