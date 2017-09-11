@@ -38,6 +38,7 @@
                     android:textColor="#80000000"
                     android:gravity="end"
                     android:text="Ver todas"
+                    android:layout_marginEnd="16dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true" />
             </RelativeLayout>
@@ -170,7 +171,7 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:layout_marginLeft="8dp"
-               
+
                 android:layout_below="@+id/instituicao_title"
                 android:layout_alignEnd="@+id/campanhas_list"
                 android:layout_marginTop="14dp"
