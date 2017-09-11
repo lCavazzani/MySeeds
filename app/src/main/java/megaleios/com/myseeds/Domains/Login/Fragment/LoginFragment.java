@@ -3,10 +3,12 @@ package megaleios.com.myseeds.Domains.Login.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +30,10 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.input_password)
     TextInputEditText inputPassword;
 
+
+    TextView openRegister;
+
+
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -38,6 +44,10 @@ public class LoginFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         unbinder = ButterKnife.bind(this, view);
+        openRegister = (TextView)view.findViewById(R.id.open_register);
+
+        openRegister.setText(Html.fromHtml(getString(R.string.open_register_text)));
+
 
         return view;
     }

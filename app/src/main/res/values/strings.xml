@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MySeeds</string>
+    <string name="open_register_text">
+    <![CDATA[Não é cadastrado ainda? <b>Faça seu cadastro</b>
+    ]]>
+    </string>
 </resources>
