@@ -23,13 +23,13 @@ public class MainAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return ExplorerFragment.newInstance();
+               // return ExplorerFragment.newInstance();
             case 1:
-                return NotificationFragment.newInstance();
+               // return NotificationFragment.newInstance();
             case 2 :
-                return HistoryFragment.newInstance();
+               // return HistoryFragment.newInstance();
             case 3:
-                return AccountFragment.newInstance();
+               // return AccountFragment.newInstance();
         }
         return null;
     }

@@ -2,6 +2,11 @@ package megaleios.com.myseeds.Domains.Main.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import megaleios.com.myseeds.R;
 
 /**
  * Created by ulyssesboumann on 16/08/17.
@@ -9,16 +14,11 @@ import android.support.v4.app.Fragment;
 
 public class NotificationFragment extends Fragment{
 
-    public NotificationFragment() {
-        // Required empty public constructor
-    }
 
-    public static NotificationFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        NotificationFragment fragment = new NotificationFragment();
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_notification , container, false);
+        return view;
     }
 }

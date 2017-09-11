@@ -78,13 +78,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_search:
                         Log.i("BottomNav", "Search");
                         break;
-
                 }
-
                 return true;
             }
         });
-
-
     }
 }
