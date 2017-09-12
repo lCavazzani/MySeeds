@@ -14,11 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
+import megaleios.com.myseeds.Adapters.CampanhasAdapter;
 import megaleios.com.myseeds.Components.SmoothRecyclerView;
 import megaleios.com.myseeds.Domains.Instituicao.Activity.InstituicaoActivity;
 import megaleios.com.myseeds.Domains.Register.Activity.RegisterActivity;
@@ -30,24 +32,26 @@ import megaleios.com.myseeds.R;
  */
 
 public class ExplorerFragment extends Fragment{
-
+    JSONObject obj;
 
     private SmoothRecyclerView mCampanhas;
+    JSONArray rootArray = new JSONArray();
+    private CampanhasAdapter adapter;
+    String JSONTEST = "{data.context: https://ahazou.search.windows.net/indexes('feeds')/$metadata#docs, value: [{@search.score: 1,},{@search.score: 1,}]}";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_explorer, container, false);
 
-//        GridLayoutManager linearLayoutManager
-//                = new GridLayoutManager (getContext(),1,GridLayoutManager.HORIZONTAL,false);
-//        mCampanhas= (SmoothRecyclerView)view.findViewById(R.id.campanhas_list);
-//        mCampanhas.setLayoutManager(linearLayoutManager);
-//        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(12, dpToPx(4), true));
-//        mCampanhas.setItemAnimator(new DefaultItemAnimator());
+        GridLayoutManager linearLayoutManager
+                = new GridLayoutManager (getContext(),1,GridLayoutManager.HORIZONTAL,false);
+        mCampanhas= (SmoothRecyclerView)view.findViewById(R.id.campanhas_list);
+        mCampanhas.setLayoutManager(linearLayoutManager);
+        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(12, dpToPx(4), true));
+        mCampanhas.setItemAnimator(new DefaultItemAnimator());
 
         CardView card = (CardView) view.findViewById(R.id.instituicao_list);
-        CardView card2 = (CardView) view.findViewById(R.id.campanhas_list);
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,14 +59,28 @@ public class ExplorerFragment extends Fragment{
                 startActivity(i);
             }
         });
-        card2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(), InstituicaoActivity.class);
-                startActivity(i);
-            }
-        });
+//        card2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getActivity(), InstituicaoActivity.class);
+//                startActivity(i);
+//            }
+//        });
+        String json = "{\"value\":[{\"id\": 1},{\"id\": 1}]}";
 
+        try {
+            obj = new JSONObject(json);
+
+            Log.d("My App", obj.toString());
+
+        } catch (Throwable tx) {
+            Log.e("My App", "Could not parse malformed JSON: \"" + json + "\"");
+        }
+        try {
+            updateDisplay(obj.toString());
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
@@ -71,17 +89,17 @@ public class ExplorerFragment extends Fragment{
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 //
-//   private void updateDisplay(String jsonData) throws JSONException, IOException {
-//        JSONObject rootObj = new JSONObject(jsonData);
-//
-//        rootArray = rootObj.getJSONArray("value");
-//
-//        adapter = new CampanhasAdapter(getContext(), rootArray);
-//
-//        mCampanhas.setFocusable(false);
-//
-//        mCampanhas.setAdapter(adapter);
-//    }
+   private void updateDisplay(String jsonData) throws JSONException, IOException {
+        JSONObject rootObj = new JSONObject(jsonData);
+
+        rootArray = rootObj.getJSONArray("value");
+
+        adapter = new CampanhasAdapter(getContext(), rootArray);
+
+        mCampanhas.setFocusable(false);
+
+        mCampanhas.setAdapter(adapter);
+    }
 //   public void Campanhas (String search) {
 //        //     pd = ProgressDialog.show(getContext(), "Carregando Pacotes...",
 //        //   "", true);

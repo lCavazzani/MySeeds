@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view4"
+        android:id="@+id/campanhas_list"
+        android:layout_below="@+id/campanha_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/button_material_light"
@@ -36,7 +37,13 @@
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="normal"
-                tools:text="Colchão para acampamento" />
+                android:text="Colchão para acampamento" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fav"
+                android:layout_alignTop="@+id/textmy"
+                android:layout_alignEnd="@+id/progressBar" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -57,20 +64,19 @@
                 android:textColor="#ec407a"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                tools:text="R$ 120,80 de R$ 500,00" />
+                android:text="R$ 120,80 de R$ 500,00" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/progressBar"
-                android:layout_marginStart="25dp"
-                android:layout_toEndOf="@+id/textView"
                 android:fontFamily="sans-serif-light"
                 android:gravity="end"
                 android:textColor="#80000000"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                tools:text="Até 14/11/2017" />
+                android:text="Até 14/11/2017"
+                android:layout_below="@+id/progressBar"
+                android:layout_toEndOf="@+id/textView2" />
 
             <View
                 android:id="@+id/divider_title"
@@ -85,14 +91,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/divider_title"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="16dp"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#000000"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                tools:text="Igreja Batista de Água Branca" />
+                android:text="Igreja Batista de Água Branca"
+                android:id="@+id/textView2"
+                android:layout_below="@+id/divider_title"
+                android:layout_alignStart="@+id/divider_title"
+                android:layout_marginBottom="16dp"/>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
