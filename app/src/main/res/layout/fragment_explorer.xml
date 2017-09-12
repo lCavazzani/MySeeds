@@ -7,7 +7,9 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
    >
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -184,106 +186,343 @@
                 android:layout_marginBottom="16dp"
                 >
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/campanhas_list"
-                android:layout_below="@+id/instituicao_title"
-               >
-
-                <TextView
-                    android:id="@+id/textmy_int"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Hilsong"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="normal" />
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/fav"
-                    android:layout_alignTop="@+id/textmy_int"
-                    android:layout_alignEnd="@+id/divider_title1" />
-                <View
-                    android:id="@+id/divider_title1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/textmy_int"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="#EEE" />
+                    android:layout_alignStart="@+id/campanhas_list"
+                    android:layout_below="@+id/instituicao_title"
 
-                <TextView
-                    android:id="@+id/textView_int"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/divider_title1"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="sans-serif"
-                    android:text="163 contribuicoes"
-                    android:textColor="#ec407a"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/divider_title1"
-                    android:layout_marginStart="25dp"
-                    android:layout_toEndOf="@+id/textView_int"
-                    android:fontFamily="sans-serif"
-                    android:gravity="end"
-                    android:text="7 campanhas"
-                    android:textColor="#ec407a"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/textmy_int"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Hilsong"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
 
-                <View
-                    android:id="@+id/divider_title2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/textView_int"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:background="#EEE" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/divider_title1"
+                        android:layout_alignTop="@+id/textmy_int"
+                        android:src="@drawable/fav" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/local"
-                    android:id="@+id/imageView"
-                    android:layout_below="@+id/divider_title2"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="16dp"/>
+                    <View
+                        android:id="@+id/divider_title1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/textmy_int"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="#EEE" />
 
-                <TextView
-                    android:id="@+id/textView2_int"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Vilaggio JK, Rua Funchal 500 - Vila Olimpia CEP 012"
-                    android:textColor="#80000000"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_below="@+id/divider_title2"
+                    <TextView
+                        android:id="@+id/textView_int"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider_title1"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="sans-serif"
+                        android:text="163 contribuicoes"
+                        android:textColor="#ec407a"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-                    android:layout_toEndOf="@+id/imageView" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider_title1"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@+id/textView_int"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:text="7 campanhas"
+                        android:textColor="#ec407a"
+                        android:textStyle="bold" />
 
-            </RelativeLayout>
+                    <View
+                        android:id="@+id/divider_title2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/textView_int"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:background="#EEE" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider_title2"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/local" />
+
+                    <TextView
+                        android:id="@+id/textView2_int"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider_title2"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_toEndOf="@+id/imageView"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-light"
+                        android:maxLines="1"
+                        android:text="Vilaggio JK, Rua Funchal 500 - Vila Olimpia CEP 012"
+                        android:textColor="#80000000"
+                        android:textSize="14sp"
+
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
             </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/instituicao_list2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/button_material_light"
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_marginLeft="8dp"
 
+                android:layout_below="@+id/instituicao_list"
+                android:layout_alignEnd="@+id/campanhas_list"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="16dp"
+                >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/campanhas_list"
+                    android:layout_below="@+id/instituicao_title"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/textmy_int2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Hilsong"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/fav"
+                        android:layout_alignTop="@+id/textmy_int2"
+                        android:layout_alignEnd="@+id/divider_title12" />
+                    <View
+                        android:id="@+id/divider_title12"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/textmy_int2"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="#EEE" />
+
+                    <TextView
+                        android:id="@+id/textView_int2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider_title12"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="sans-serif"
+                        android:text="163 contribuicoes"
+                        android:textColor="#ec407a"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider_title12"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@+id/textView_int2"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:text="7 campanhas"
+                        android:textColor="#ec407a"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/divider_title22"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/textView_int2"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:background="#EEE" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/local"
+                        android:id="@+id/imageView2"
+                        android:layout_below="@+id/divider_title22"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:id="@+id/textView2_int2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Vilaggio JK, Rua Funchal 500 - Vila Olimpia CEP 012"
+                        android:textColor="#80000000"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_below="@+id/divider_title22"
+
+                        android:layout_toEndOf="@+id/imageView2" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/instituicao_list3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/button_material_light"
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_marginLeft="8dp"
+
+                android:layout_below="@+id/instituicao_list2"
+                android:layout_alignEnd="@+id/campanhas_list"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="16dp"
+                >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/campanhas_list"
+                    android:layout_below="@+id/instituicao_title"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/textmy_int3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Hilsong"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/fav"
+                        android:layout_alignTop="@+id/textmy_int3"
+                        android:layout_alignEnd="@+id/divider_title13" />
+                    <View
+                        android:id="@+id/divider_title13"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/textmy_int3"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="#EEE" />
+
+                    <TextView
+                        android:id="@+id/textView_int3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider_title13"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="sans-serif"
+                        android:text="163 contribuicoes"
+                        android:textColor="#ec407a"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/divider_title13"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@+id/textView_int3"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:text="7 campanhas"
+                        android:textColor="#ec407a"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:id="@+id/divider_title23"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/textView_int3"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:background="#EEE" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/local"
+                        android:id="@+id/imageView3"
+                        android:layout_below="@+id/divider_title23"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:id="@+id/textView2_int3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Vilaggio JK, Rua Funchal 500 - Vila Olimpia CEP 012"
+                        android:textColor="#80000000"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_below="@+id/divider_title23"
+
+                        android:layout_toEndOf="@+id/imageView3" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
         </RelativeLayout>
-
-
+    </ScrollView>
 </RelativeLayout>
