@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 import megaleios.com.myseeds.R;
 import megaleios.com.myseeds.Util.CustomMaskUtil;
@@ -36,9 +39,12 @@ public class InstituicaoFragment extends Fragment{
         final EditText button_contribuir = (EditText) view.findViewById(R.id.button_contribuir);
         final LinearLayout finish_contribuir = (LinearLayout) view.findViewById(R.id.finish_contribuir);
         final LinearLayout add_more = (LinearLayout) view.findViewById(R.id.add_more);
+        final TextView total_value = (TextView) view.findViewById(R.id.total_value);
         button.setRawInputType(Configuration.KEYBOARD_12KEY);
         contribuir_button.setRawInputType(Configuration.KEYBOARD_12KEY);
         button_contribuir.setRawInputType(Configuration.KEYBOARD_12KEY);
+        String finalvalue_total = total_value.getText().toString();
+        final String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
         button.addTextChangedListener(new TextWatcher(){
             DecimalFormat dec = new DecimalFormat("0.00");
             @Override
@@ -131,6 +137,14 @@ public class InstituicaoFragment extends Fragment{
                     button_contribuir.setSelection(formatted.length());
 
                     button_contribuir.addTextChangedListener(this);
+                    String finalvalue_arg = arg0.toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+
+                    int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+                    NumberFormat format = NumberFormat.getCurrencyInstance();
+                    String currency = format.format(final_int);
+
+                    total_value.setText(currency);
                 }
             }
             @Override
@@ -143,7 +157,27 @@ public class InstituicaoFragment extends Fragment{
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().equals(current)){
+                    button.removeTextChangedListener(this);
 
+                    String cleanString = s.toString().replaceAll("[$,.]", "");
+
+                    double parsed = Double.parseDouble(cleanString);
+                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
+
+                    current = formatted;
+                    button_contribuir.setText(formatted);
+                    button_contribuir.setSelection(formatted.length());
+
+                    button_contribuir.addTextChangedListener(this);
+                    String finalvalue_arg = s.toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+                    String finalvalue_total = total_value.getText().toString();
+                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+                    int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+
+                    total_value.setText(String.valueOf(final_int));
+                }
             }
         });
         button.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -178,7 +212,5 @@ public class InstituicaoFragment extends Fragment{
 
 
         return view;
-
-
     }
 }
