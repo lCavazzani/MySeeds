@@ -87,6 +87,12 @@
                         android:textSize="16sp"
                         android:textStyle="normal"
                         android:text="Colchão para acampamento" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/fav"
+                        android:layout_alignTop="@+id/textmy"
+                        android:layout_alignEnd="@+id/progressBar" />
 
                     <ProgressBar
                         android:id="@+id/progressBar"
@@ -134,15 +140,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/divider_title"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginStart="16dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="#000000"
                         android:textSize="14sp"
                         android:textStyle="normal"
                         android:text="Igreja Batista de Água Branca"
-                        android:id="@+id/textView2" />
+                        android:id="@+id/textView2"
+                        android:layout_below="@+id/divider_title"
+                        android:layout_alignStart="@+id/divider_title"
+                        android:layout_marginBottom="16dp"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -196,7 +202,12 @@
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:textStyle="normal" />
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/fav"
+                    android:layout_alignTop="@+id/textmy_int"
+                    android:layout_alignEnd="@+id/divider_title1" />
                 <View
                     android:id="@+id/divider_title1"
                     android:layout_width="match_parent"
@@ -243,20 +254,31 @@
                     android:layout_marginStart="16dp"
                     android:background="#EEE" />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/local"
+                    android:id="@+id/imageView"
+                    android:layout_below="@+id/divider_title2"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"/>
+
                 <TextView
                     android:id="@+id/textView2_int"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/divider_title2"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginStart="16dp"
                     android:fontFamily="sans-serif-light"
                     android:text="Vilaggio JK, Rua Funchal 500 - Vila Olimpia CEP 012"
                     android:textColor="#80000000"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textSize="14sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@+id/divider_title2"
+
+                    android:layout_toEndOf="@+id/imageView" />
 
             </RelativeLayout>
             </android.support.v7.widget.CardView>
