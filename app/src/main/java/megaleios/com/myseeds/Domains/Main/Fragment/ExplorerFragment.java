@@ -47,8 +47,15 @@ public class ExplorerFragment extends Fragment{
 //        mCampanhas.setItemAnimator(new DefaultItemAnimator());
 
         CardView card = (CardView) view.findViewById(R.id.instituicao_list);
-
+        CardView card2 = (CardView) view.findViewById(R.id.campanhas_list);
         card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), InstituicaoActivity.class);
+                startActivity(i);
+            }
+        });
+        card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), InstituicaoActivity.class);
