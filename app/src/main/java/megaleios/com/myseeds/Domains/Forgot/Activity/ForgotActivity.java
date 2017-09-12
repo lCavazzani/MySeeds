@@ -32,7 +32,6 @@ public class ForgotActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + "Esqueceu a senha" + "</font>"));
-
     }
 
     @Override

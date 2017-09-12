@@ -34,6 +34,7 @@
         <activity
             android:name=".Domains.Instituicao.Activity.InstituicaoActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
             />
     </application>
 

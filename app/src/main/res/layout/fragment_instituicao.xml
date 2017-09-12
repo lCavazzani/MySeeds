@@ -7,6 +7,8 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     >
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,6 +26,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView3" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fav"
+                android:layout_alignTop="@+id/textView3"
+                android:layout_alignEnd="@+id/textView2_int" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,21 +82,30 @@
                 android:layout_marginStart="16dp"
                 android:background="#EEE" />
 
-            <TextView
+            <Spinner
                 android:id="@+id/textView2_int"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/divider_title2"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="16dp"
                 android:fontFamily="sans-serif-light"
                 android:text="Vilaggio JK, Rua Funchal 500 - Vila Olimpia CEP 012"
                 android:textColor="#80000000"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textSize="14sp"
-                android:textStyle="normal" />
-
+                android:textStyle="normal"
+                android:entries="@array/parcelas"
+                android:layout_marginEnd="16dp"
+                android:prompt="@string/parcelasfirst"
+                android:layout_below="@+id/divider_title2"
+                android:layout_toEndOf="@+id/imageView3"
+                android:layout_marginStart="8dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/local"
+                android:layout_below="@+id/divider_title2"
+                android:layout_alignStart="@+id/button_contribuir"
+                android:id="@+id/imageView3" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,7 +113,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_below="@+id/textView2_int"
-                android:id="@+id/button_contribuir"/>
+                android:id="@+id/button_contribuir"
+                android:textColor="#8945d1"
+                android:background="@drawable/button_contribuir_purple"
+                android:layout_marginTop="36dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -157,6 +177,12 @@
                         android:textColor="#000000"
                         android:textSize="16sp"
                         android:textStyle="normal" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/fav"
+                        android:layout_alignTop="@+id/textmy"
+                        android:layout_alignEnd="@+id/button" />
 
                     <TextView
                         android:id="@+id/date_end"
@@ -211,7 +237,12 @@
                         android:text="Contribuir"
                         android:layout_alignBaseline="@+id/textView"
                         android:layout_alignBottom="@+id/textView"
-                        android:layout_toEndOf="@+id/divider_title" />
+                        android:layout_toEndOf="@+id/divider_title"
+                        android:padding="8dp"
+                        android:textColor="#8945d1"
+                        android:background="@drawable/button_contribuir_purple"
+                        android:layout_marginBottom="8dp"
+                        android:id="@+id/button" />
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -249,6 +280,12 @@
                         android:textColor="#000000"
                         android:textSize="16sp"
                         android:textStyle="normal" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/fav"
+                        android:layout_alignTop="@+id/textmy2"
+                        android:layout_alignEnd="@+id/contribuir_button" />
 
                     <TextView
                         android:id="@+id/date_end2"
@@ -278,11 +315,11 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/progressBar2"
                         android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="2dp"
                         android:fontFamily="sans-serif"
                         android:text="R$ 120,80 de R$ 500,00"
-                        android:layout_marginLeft="16dp"
                         android:textColor="#ec407a"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -297,14 +334,18 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:background="#EEE" />
+
                     <Button
+                        android:id="@+id/contribuir_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contribuir"
                         android:layout_alignBaseline="@+id/textView2"
                         android:layout_alignBottom="@+id/textView2"
+                        android:layout_marginBottom="8dp"
                         android:layout_toEndOf="@+id/divider_title4"
-                        android:id="@+id/contribuir_button"/>
+                        android:background="@drawable/button_contribuir_purple"
+                        android:text="Contribuir"
+                        android:textColor="#8945d1" />
 
 
                 </RelativeLayout>
@@ -321,15 +362,18 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Cobrir taxa de processamento"
-                android:layout_below="@+id/campanhas_list2"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Contribuir"
-                android:layout_below="@+id/check_terms"
-                />
+                android:layout_below="@+id/campanhas_list2"
+                android:layout_marginBottom="16dp"/>
+            <!--<Button-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Contribuir"-->
+                <!--android:layout_below="@+id/check_terms"-->
+                <!--/>-->
 
         </RelativeLayout>
     </ScrollView>
+
+
 
 </RelativeLayout>

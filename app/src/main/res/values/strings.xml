@@ -4,4 +4,12 @@
     <![CDATA[Não é cadastrado ainda? <b>Faça seu cadastro</b>
     ]]>
     </string>
+    <string name="parcelasfirst">Cidade</string>
+
+    <string-array name="parcelas">
+        <item>Cidade 1</item>
+        <item>Cidade 2</item>
+        <item>Cidade 3</item>
+    </string-array>
+
 </resources>
