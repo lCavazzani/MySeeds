@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,11 +45,12 @@ public class InstituicaoFragment extends Fragment{
         final TextView more_money_one = (TextView) view.findViewById(R.id.more_money_one);
         final TextView more_money_two = (TextView) view.findViewById(R.id.more_money_two);
         final TextView more_money_three = (TextView) view.findViewById(R.id.more_money_three);
+        CheckBox check_terms = (CheckBox) view.findViewById(R.id.check_terms);
+
         button.setRawInputType(Configuration.KEYBOARD_12KEY);
         contribuir_button.setRawInputType(Configuration.KEYBOARD_12KEY);
         button_contribuir.setRawInputType(Configuration.KEYBOARD_12KEY);
-        String finalvalue_total = total_value.getText().toString();
-        final String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+
         button.addTextChangedListener(new TextWatcher(){
             DecimalFormat dec = new DecimalFormat("0.00");
             @Override
@@ -128,18 +131,20 @@ public class InstituicaoFragment extends Fragment{
             @Override
             public void afterTextChanged(Editable arg0) {
                 if(!arg0.toString().equals(current)){
-                    button.removeTextChangedListener(this);
-
-                    String cleanString = arg0.toString().replaceAll("[$,.]", "");
-
-                    double parsed = Double.parseDouble(cleanString);
-                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
-
-                    current = formatted;
-                    button_contribuir.setText(formatted);
-                    button_contribuir.setSelection(formatted.length());
-
-                    button_contribuir.addTextChangedListener(this);
+                    String finalvalue_total = total_value.getText().toString();
+                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+//                    button.removeTextChangedListener(this);
+//
+//                    String cleanString = arg0.toString().replaceAll("[$,.]", "");
+//
+//                    double parsed = Double.parseDouble(cleanString);
+//                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
+//
+//                    current = formatted;
+//                    button_contribuir.setText(cleanString);
+//                    button_contribuir.setSelection(cleanString.length());
+//
+//                    button_contribuir.addTextChangedListener(this);
                     String finalvalue_arg = arg0.toString();
                     String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
 
@@ -147,7 +152,7 @@ public class InstituicaoFragment extends Fragment{
                     NumberFormat format = NumberFormat.getCurrencyInstance();
                     String currency = format.format(final_int);
 
-                    total_value.setText(currency);
+                    total_value.setText(Integer.toString(final_int));
                 }
             }
             @Override
@@ -161,25 +166,7 @@ public class InstituicaoFragment extends Fragment{
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!s.toString().equals(current)){
-                    button.removeTextChangedListener(this);
-
-                    String cleanString = s.toString().replaceAll("[$,.]", "");
-
-                    double parsed = Double.parseDouble(cleanString);
-                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
-
-                    current = formatted;
-                    button_contribuir.setText(formatted);
-                    button_contribuir.setSelection(formatted.length());
-
-                    button_contribuir.addTextChangedListener(this);
-                    String finalvalue_arg = s.toString();
-                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
-                    String finalvalue_total = total_value.getText().toString();
-                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
-                    int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
-
-                    total_value.setText(String.valueOf(final_int));
+//                   +
                 }
             }
         });
@@ -244,8 +231,26 @@ public class InstituicaoFragment extends Fragment{
                 total_value.setText(String.valueOf(final_int));
             }
         });
+        check_terms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if ( isChecked )
+                {
+                    String sum_value = total_value.getText().toString();
+                    String sum_number  = sum_value.replaceAll("[^0-9]", "");
+                    int final_int = 2+ Integer.parseInt(sum_number);
+                    total_value.setText(String.valueOf(final_int));
+                }else{
+                    String sum_value = total_value.getText().toString();
+                    String sum_number  = sum_value.replaceAll("[^0-9]", "");
+                    int final_int = Integer.parseInt(sum_number)-2;
+                    total_value.setText(String.valueOf(final_int));
+                }
 
-
+            }
+        });
         return view;
     }
 }

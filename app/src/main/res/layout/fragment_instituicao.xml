@@ -423,13 +423,15 @@
                 android:layout_marginTop="16dp"
                 android:text="Cobrir taxa de processamento"
                 android:layout_below="@+id/campanhas_list2"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Será adicionado o valor de R$2.00"
+                android:layout_alignTop="@+id/check_terms"
+                android:layout_alignStart="@+id/textView2_int"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="78dp"/>
-            <!--<Button-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Contribuir"-->
-                <!--android:layout_below="@+id/check_terms"-->
-                <!--/>-->
 
         </RelativeLayout>
     </ScrollView>
