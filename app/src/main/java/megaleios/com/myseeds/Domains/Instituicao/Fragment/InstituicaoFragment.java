@@ -40,6 +40,9 @@ public class InstituicaoFragment extends Fragment{
         final LinearLayout finish_contribuir = (LinearLayout) view.findViewById(R.id.finish_contribuir);
         final LinearLayout add_more = (LinearLayout) view.findViewById(R.id.add_more);
         final TextView total_value = (TextView) view.findViewById(R.id.total_value);
+        final TextView more_money_one = (TextView) view.findViewById(R.id.more_money_one);
+        final TextView more_money_two = (TextView) view.findViewById(R.id.more_money_two);
+        final TextView more_money_three = (TextView) view.findViewById(R.id.more_money_three);
         button.setRawInputType(Configuration.KEYBOARD_12KEY);
         contribuir_button.setRawInputType(Configuration.KEYBOARD_12KEY);
         button_contribuir.setRawInputType(Configuration.KEYBOARD_12KEY);
@@ -208,7 +211,39 @@ public class InstituicaoFragment extends Fragment{
             }
         });
 
-
+        more_money_three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sum_value = total_value.getText().toString();
+                String sum_number  = sum_value.replaceAll("[^0-9]", "");
+                String view_value = more_money_three.getText().toString();
+                String view_number  = view_value.replaceAll("[^0-9]", "");
+                int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
+                total_value.setText(String.valueOf(final_int));
+            }
+        });
+        more_money_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sum_value = total_value.getText().toString();
+                String sum_number  = sum_value.replaceAll("[^0-9]", "");
+                String view_value = more_money_two.getText().toString();
+                String view_number  = view_value.replaceAll("[^0-9]", "");
+                int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
+                total_value.setText(String.valueOf(final_int));
+            }
+        });
+        more_money_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sum_value = total_value.getText().toString();
+                String sum_number  = sum_value.replaceAll("[^0-9]", "");
+                String view_value = more_money_one.getText().toString();
+                String view_number  = view_value.replaceAll("[^0-9]", "");
+                int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
+                total_value.setText(String.valueOf(final_int));
+            }
+        });
 
 
         return view;
