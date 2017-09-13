@@ -66,7 +66,7 @@ public class ExplorerFragment extends Fragment{
 //                startActivity(i);
 //            }
 //        });
-        String json = "{\"value\":[{\"id\": 1},{\"id\": 1}]}";
+        String json = "{\"value\":[{\"id\": 1},{\"id\": 2},{\"id\": 3},{\"id\": 4}]}";
 
         try {
             obj = new JSONObject(json);
