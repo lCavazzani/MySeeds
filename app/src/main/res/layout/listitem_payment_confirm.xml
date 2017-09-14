@@ -15,7 +15,7 @@
             android:layout_margin="16dp">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
@@ -27,7 +27,7 @@
                  />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"

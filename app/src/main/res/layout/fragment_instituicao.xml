@@ -449,6 +449,7 @@
         android:id="@+id/finish_contribuir"
         android:layout_height="62dp"
         android:layout_alignParentBottom="true"
+        android:isScrollContainer="false"
         android:background="#fff"
         android:visibility="gone">
 

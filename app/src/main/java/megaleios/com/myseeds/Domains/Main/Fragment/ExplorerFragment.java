@@ -2,6 +2,7 @@ package megaleios.com.myseeds.Domains.Main.Fragment;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -13,18 +14,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import megaleios.com.myseeds.Adapters.CampanhasAdapter;
 import megaleios.com.myseeds.Components.SmoothRecyclerView;
 import megaleios.com.myseeds.Domains.Instituicao.Activity.InstituicaoActivity;
 import megaleios.com.myseeds.Domains.Register.Activity.RegisterActivity;
 import megaleios.com.myseeds.Helpers.GridSpacingItemDecoration;
+import megaleios.com.myseeds.Helpers.RecyclerItemClickListener;
 import megaleios.com.myseeds.R;
 
 /**
@@ -51,6 +56,19 @@ public class ExplorerFragment extends Fragment{
         mCampanhas.addItemDecoration(new GridSpacingItemDecoration(12, dpToPx(4), true));
         mCampanhas.setItemAnimator(new DefaultItemAnimator());
 
+        mCampanhas.addOnItemTouchListener( new RecyclerItemClickListener(getContext(), mCampanhas ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Intent i = new Intent(getActivity(), InstituicaoActivity.class);
+                        startActivity(i);
+                    }
+
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
+
         CardView card = (CardView) view.findViewById(R.id.instituicao_list);
         card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +84,7 @@ public class ExplorerFragment extends Fragment{
 //                startActivity(i);
 //            }
 //        });
-        String json = "{\"value\":[{\"id\": 1},{\"id\": 2},{\"id\": 3},{\"id\": 4}]}";
+        String json = "{\"value\":[{\"id\": \"Campanha do agasalho\"},{\"id\": \"Campanha festa junina\"},{\"id\": \"Campanha de Natal\"},{\"id\": \"Campanha ação de graças\"}]}";
 
         try {
             obj = new JSONObject(json);
