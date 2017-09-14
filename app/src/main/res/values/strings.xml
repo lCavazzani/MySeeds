@@ -12,4 +12,20 @@
         <item>Cidade 3</item>
     </string-array>
 
+
+    <string-array name="contribuir">
+        <item>Contribuir uma vez</item>
+        <item>Contribuir mensalmente</item>
+        <item>MContribuir semanalmente</item>
+    </string-array>
+    <string-array name="contribuir_tempo">
+        <item>Termino indefinido</item>
+        <item>Escolher data</item>
+    </string-array>
+
+    <string-array name="cartoes">
+        <item>**** **** **** 1234</item>
+        <item>**** **** **** 5734</item>
+    </string-array>
+
 </resources>
