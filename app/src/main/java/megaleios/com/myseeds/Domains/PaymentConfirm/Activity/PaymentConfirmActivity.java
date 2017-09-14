@@ -8,6 +8,7 @@ import android.text.Html;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import megaleios.com.myseeds.Domains.Instituicao.Fragment.InstituicaoFragment;
+import megaleios.com.myseeds.Domains.PaymentConfirm.Fragment.PaymentConfirmFragment;
 import megaleios.com.myseeds.R;
 
 /**
@@ -26,7 +27,7 @@ public class PaymentConfirmActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.rootContainer, new InstituicaoFragment()).commit();
+                .add(R.id.rootContainer, new PaymentConfirmFragment()).commit();
 
         setSupportActionBar(toolbar);
 

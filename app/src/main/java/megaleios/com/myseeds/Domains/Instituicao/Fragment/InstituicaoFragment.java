@@ -1,4 +1,5 @@
 package megaleios.com.myseeds.Domains.Instituicao.Fragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
@@ -16,10 +17,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Locale;
 
+import megaleios.com.myseeds.Domains.PaymentConfirm.Activity.PaymentConfirmActivity;
 import megaleios.com.myseeds.R;
 import megaleios.com.myseeds.Util.CustomMaskUtil;
 import megaleios.com.myseeds.Util.MaskType;
@@ -45,6 +48,9 @@ public class InstituicaoFragment extends Fragment{
         final TextView more_money_one = (TextView) view.findViewById(R.id.more_money_one);
         final TextView more_money_two = (TextView) view.findViewById(R.id.more_money_two);
         final TextView more_money_three = (TextView) view.findViewById(R.id.more_money_three);
+        final Button button2 = (Button) view.findViewById(R.id.button2);
+        final ScrollView scrollview = (ScrollView) view.findViewById(R.id.scrollview);
+
         CheckBox check_terms = (CheckBox) view.findViewById(R.id.check_terms);
 
         button.setRawInputType(Configuration.KEYBOARD_12KEY);
@@ -194,6 +200,7 @@ public class InstituicaoFragment extends Fragment{
                 if (hasFocus) {
                     finish_contribuir.setVisibility(View.VISIBLE);
                     add_more.setVisibility(View.VISIBLE);
+                    scrollview.smoothScrollTo(0,view.getTop());
                 }
             }
         });
@@ -248,7 +255,13 @@ public class InstituicaoFragment extends Fragment{
                     int final_int = Integer.parseInt(sum_number)-2;
                     total_value.setText(String.valueOf(final_int));
                 }
-
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), PaymentConfirmActivity.class);
+                startActivity(i);
             }
         });
         return view;

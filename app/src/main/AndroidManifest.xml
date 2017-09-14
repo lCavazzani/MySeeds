@@ -36,6 +36,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeGrey.NoActionBar"
             />
+        <activity
+            android:name=".Domains.PaymentConfirm.Activity.PaymentConfirmActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
+            />
     </application>
 
 </manifest>
