@@ -1,17 +1,23 @@
 package megaleios.com.myseeds.Domains.Instituicao.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -39,8 +45,8 @@ public class InstituicaoFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_instituicao, container, false);
-        final EditText button = (EditText) view.findViewById(R.id.button);
-        final EditText contribuir_button = (EditText) view.findViewById(R.id.contribuir_button);
+        final EditText button_camp_1 = (EditText) view.findViewById(R.id.button);
+        final EditText button_camp_2 = (EditText) view.findViewById(R.id.contribuir_button);
         final EditText button_contribuir = (EditText) view.findViewById(R.id.button_contribuir);
         final LinearLayout finish_contribuir = (LinearLayout) view.findViewById(R.id.finish_contribuir);
         final LinearLayout add_more = (LinearLayout) view.findViewById(R.id.add_more);
@@ -52,86 +58,72 @@ public class InstituicaoFragment extends Fragment{
         final ScrollView scrollview = (ScrollView) view.findViewById(R.id.scrollview);
 
         CheckBox check_terms = (CheckBox) view.findViewById(R.id.check_terms);
+        getActivity().getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        button.setRawInputType(Configuration.KEYBOARD_12KEY);
-        contribuir_button.setRawInputType(Configuration.KEYBOARD_12KEY);
+        button_camp_1.setRawInputType(Configuration.KEYBOARD_12KEY);
+        button_camp_2.setRawInputType(Configuration.KEYBOARD_12KEY);
         button_contribuir.setRawInputType(Configuration.KEYBOARD_12KEY);
-
-        button.addTextChangedListener(new TextWatcher(){
-            DecimalFormat dec = new DecimalFormat("0.00");
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                if(!arg0.toString().equals(current)){
-                    button.removeTextChangedListener(this);
-
-                    String cleanString = arg0.toString().replaceAll("[$,.]", "");
-
-                    double parsed = Double.parseDouble(cleanString);
-                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
-
-                    current = formatted;
-                    button.setText(formatted);
-                    button.setSelection(formatted.length());
-
-                    button.addTextChangedListener(this);
-                }
-            }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                add_more.setVisibility(View.VISIBLE);
-            }
-            private String current = "";
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!s.toString().equals(current)){
-                    button.removeTextChangedListener(this);
-
-                    String cleanString = s.toString().replaceAll("[$,.]", "");
-
-                    double parsed = Double.parseDouble(cleanString);
-                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
-
-                    current = formatted;
-                    button.setText(formatted);
-                    button.setSelection(formatted.length());
-
-                    button.addTextChangedListener(this);
-                }
-            }
-        });
-        contribuir_button.addTextChangedListener(new TextWatcher(){
-            DecimalFormat dec = new DecimalFormat("0.00");
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                if(!arg0.toString().equals(current)){
-                    button.removeTextChangedListener(this);
-
-                    String cleanString = arg0.toString().replaceAll("[$,.]", "");
-
-                    double parsed = Double.parseDouble(cleanString);
-                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
-
-                    current = formatted;
-                    contribuir_button.setText(formatted);
-                    contribuir_button.setSelection(formatted.length());
-
-                    contribuir_button.addTextChangedListener(this);
-                }
-            }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                add_more.setVisibility(View.VISIBLE);
-            }
-            private String current = "";
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-        });
+//        button_camp_1.addTextChangedListener(new TextWatcher(){
+//            DecimalFormat dec = new DecimalFormat("0.00");
+//            @Override
+//            public void afterTextChanged(final Editable arg0) {
+//                if(!arg0.toString().equals(current)){
+//                            String bottom_value = total_value.getText().toString();
+//                            String number_total  = bottom_value.replaceAll("[^0-9]", "");//remove $
+//                            String value_arg = arg0.toString();
+//                            String number_arg  = value_arg.replaceAll("[^0-9]", "");//remove $
+//
+//                            int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+//                            total_value.setText(Integer.toString(final_int));
+//                }
+//            }
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start,
+//                                          int count, int after) {
+//                finish_contribuir.setVisibility(View.VISIBLE);
+//                add_more.setVisibility(View.VISIBLE);
+//            }
+//            private String current = "";
+//            @RequiresApi(api = Build.VERSION_CODES.N)
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if(!s.toString().equals(current)){
+////                   +
+//                }
+//            }
+//        });
+//        button_camp_2.addTextChangedListener(new TextWatcher(){
+//            DecimalFormat dec = new DecimalFormat("0.00");
+//            @Override
+//            public void afterTextChanged(Editable arg0) {
+//                if(!arg0.toString().equals(current)){
+//                    String finalvalue_total = total_value.getText().toString();
+//                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+//                    String finalvalue_arg = arg0.toString();
+//                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+//
+//                    int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+//                    NumberFormat format = NumberFormat.getCurrencyInstance();
+//                    total_value.setText(Integer.toString(final_int));
+//                }
+//
+//            }
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start,
+//                                          int count, int after) {
+//                finish_contribuir.setVisibility(View.VISIBLE);
+//                add_more.setVisibility(View.VISIBLE);
+//            }
+//            private String current = "";
+//            @RequiresApi(api = Build.VERSION_CODES.N)
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if(!s.toString().equals(current)){
+////                   +
+//                }
+//            }
+//        });
         button_contribuir.addTextChangedListener(new TextWatcher(){
             DecimalFormat dec = new DecimalFormat("0.00");
             @Override
@@ -151,14 +143,12 @@ public class InstituicaoFragment extends Fragment{
 //                    button_contribuir.setSelection(cleanString.length());
 //
 //                    button_contribuir.addTextChangedListener(this);
-                    String finalvalue_arg = arg0.toString();
-                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
-
-                    int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
-                    NumberFormat format = NumberFormat.getCurrencyInstance();
-                    String currency = format.format(final_int);
-
-                    total_value.setText(Integer.toString(final_int));
+//                    String finalvalue_arg = arg0.toString();
+//                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+//
+//                    int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+//                    NumberFormat format = NumberFormat.getCurrencyInstance();
+//                    total_value.setText(Integer.toString(final_int));
                 }
             }
             @Override
@@ -176,24 +166,7 @@ public class InstituicaoFragment extends Fragment{
                 }
             }
         });
-        button.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (hasFocus) {
-                    finish_contribuir.setVisibility(View.VISIBLE);
-                    add_more.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        contribuir_button.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (hasFocus) {
-                    finish_contribuir.setVisibility(View.VISIBLE);
-                    add_more.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+
         button_contribuir.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -202,6 +175,116 @@ public class InstituicaoFragment extends Fragment{
                     add_more.setVisibility(View.VISIBLE);
                     scrollview.smoothScrollTo(0,view.getTop());
                 }
+                else{
+                    String finalvalue_total = total_value.getText().toString();
+                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+                    String finalvalue_arg = button_contribuir.getText().toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+
+                    if(!number_arg.equals("")&&!number_total.equals("")){
+                        int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+                        NumberFormat format = NumberFormat.getCurrencyInstance();
+                        total_value.setText(Integer.toString(final_int));
+                    }
+                }
+            }
+        });
+        button_contribuir.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    String finalvalue_total = total_value.getText().toString();
+                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+                    String finalvalue_arg = button_contribuir.getText().toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+
+                    if(!number_arg.equals("")&&!number_total.equals("")){
+                        int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+                        NumberFormat format = NumberFormat.getCurrencyInstance();
+                        total_value.setText(Integer.toString(final_int));
+                    }
+                }
+                return false;
+            }
+        });
+
+        button_camp_1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    finish_contribuir.setVisibility(View.VISIBLE);
+                    scrollview.smoothScrollTo(0,view.getTop());
+                }
+                else{
+                    String finalvalue_total = total_value.getText().toString();
+                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+                    String finalvalue_arg = button_camp_1.getText().toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+
+                    if(!number_arg.equals("")&&!number_total.equals("")){
+                        int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+                        NumberFormat format = NumberFormat.getCurrencyInstance();
+                        total_value.setText(Integer.toString(final_int));
+                    }
+                }
+            }
+        });
+        button_camp_1.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    String finalvalue_total = total_value.getText().toString();
+                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+                    String finalvalue_arg = button_camp_1.getText().toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+
+                    if(!number_arg.equals("")&&!number_total.equals("")){
+                        int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+                        NumberFormat format = NumberFormat.getCurrencyInstance();
+                        total_value.setText(Integer.toString(final_int));
+                    }
+                }
+                return false;
+            }
+        });
+
+        button_camp_2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    finish_contribuir.setVisibility(View.VISIBLE);
+                    scrollview.smoothScrollTo(0,view.getTop());
+                }
+                else{
+                    String finalvalue_total = total_value.getText().toString();
+                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+                    String finalvalue_arg = button_camp_2.getText().toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+
+                    if(!number_arg.equals("")&&!number_total.equals("")){
+                        int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+                        NumberFormat format = NumberFormat.getCurrencyInstance();
+                        total_value.setText(Integer.toString(final_int));
+                    }
+                }
+            }
+        });
+        button_camp_2.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    String finalvalue_total = total_value.getText().toString();
+                    String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
+                    String finalvalue_arg = button_camp_2.getText().toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+
+                    if(!number_arg.equals("")&&!number_total.equals("")){
+                        int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
+                        NumberFormat format = NumberFormat.getCurrencyInstance();
+                        total_value.setText(Integer.toString(final_int));
+                    }
+                }
+                return false;
             }
         });
 
@@ -266,4 +349,6 @@ public class InstituicaoFragment extends Fragment{
         });
         return view;
     }
+
+
 }
