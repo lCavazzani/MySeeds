@@ -461,6 +461,7 @@
             android:background="@drawable/button_contribuir_purple_solid"
             android:text="CONTRIBUIR"
             android:fontFamily="sans-serif"
+
             android:textStyle="bold"
             android:textColor="#fff"/>
         <TextView

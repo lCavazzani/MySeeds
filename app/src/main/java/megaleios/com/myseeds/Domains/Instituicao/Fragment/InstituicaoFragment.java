@@ -131,24 +131,14 @@ public class InstituicaoFragment extends Fragment{
                 if(!arg0.toString().equals(current)){
                     String finalvalue_total = total_value.getText().toString();
                     String number_total  = finalvalue_total.replaceAll("[^0-9]", "");
-//                    button.removeTextChangedListener(this);
-//
-//                    String cleanString = arg0.toString().replaceAll("[$,.]", "");
-//
-//                    double parsed = Double.parseDouble(cleanString);
-//                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
-//
-//                    current = formatted;
-//                    button_contribuir.setText(cleanString);
-//                    button_contribuir.setSelection(cleanString.length());
-//
-//                    button_contribuir.addTextChangedListener(this);
-//                    String finalvalue_arg = arg0.toString();
-//                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
-//
-//                    int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
-//                    NumberFormat format = NumberFormat.getCurrencyInstance();
-//                    total_value.setText(Integer.toString(final_int));
+                    String finalvalue_arg = button_contribuir.getText().toString();
+                    String number_arg  = finalvalue_arg.replaceAll("[^0-9]", "");
+
+                    if(!number_arg.equals("")&&!number_total.equals("")){
+                        int final_int = Integer.parseInt(number_arg +number_total);
+                        NumberFormat format = NumberFormat.getCurrencyInstance();
+                        total_value.setText(Integer.toString(final_int));
+                    }
                 }
             }
             @Override
@@ -156,6 +146,7 @@ public class InstituicaoFragment extends Fragment{
                                           int count, int after) {
                 finish_contribuir.setVisibility(View.VISIBLE);
                 add_more.setVisibility(View.VISIBLE);
+
             }
             private String current = "";
             @RequiresApi(api = Build.VERSION_CODES.N)
