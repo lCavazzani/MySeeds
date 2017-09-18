@@ -6,6 +6,29 @@
     </string>
     <string name="parcelasfirst">Cidade</string>
 
+    <string name="register">Cadastrar</string>
+    <string name="name">Nome</string>
+    <string name="last_name">Sobrenome</string>
+    <string name="phone">Telefone</string>
+    <string name="email">E-mail</string>
+    <string name="login">Login</string>
+    <string name="city">Cidade</string>
+    <string name="state">Estado</string>
+    <string name="password">Senha</string>
+    <string name="password_confirm">Confirmar senha</string>
+    <string name="forgot_password">Esqueci a senha</string>
+    <string name="enter">Entrar</string>
+    <string name="enter_facebook">Entrar com Facebook</string>
+    <string name="dont_have_account">Não tem uma conta? Cadastre-se</string>
+    <string name="name_required">Nome obrigatório</string>
+    <string name="last_name_required">Sobrenome obrigatório</string>
+    <string name="email_required">Email obrigatório</string>
+    <string name="city_required">Cidade obrigatório</string>
+    <string name="state_required">Estado obrigatório</string>
+    <string name="password_required">Senha obrigatória</string>
+    <string name="confirm_password_required">Confirmar senha obrigatório</string>
+    <string name="ok">ok</string>
+
     <string-array name="parcelas">
         <item>Cidade 1</item>
         <item>Cidade 2</item>
