@@ -111,7 +111,7 @@ public class RequestService {
     }
 
     public static void getInfo(final Context context, final CallbackDefault callback) {
-        getJson(context, Config.URL_PATH + "api/v1/ProfileMotorista/GetInfo", new FutureCallback<JsonObject>() {
+        getJson(context, Config.URL_PATH + "api/v1/Profile/GetInfo", new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
                 validacaoBase(e, result, context, callback);

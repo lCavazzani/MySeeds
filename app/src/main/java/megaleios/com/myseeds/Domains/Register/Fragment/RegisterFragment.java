@@ -21,6 +21,7 @@ import megaleios.com.myseeds.Domains.Main.Activity.MainActivity;
 import megaleios.com.myseeds.Models.Auth;
 import megaleios.com.myseeds.Models.ProfileUser;
 import megaleios.com.myseeds.R;
+import megaleios.com.myseeds.Service.Core;
 import megaleios.com.myseeds.Service.RequestService;
 import megaleios.com.myseeds.Util.MaskUtil;
 import megaleios.com.myseeds.Util.SessionManager;
@@ -44,6 +45,8 @@ public class RegisterFragment extends Fragment {
     TextInputEditText inputPassword;
     @BindView(R.id.input_password_confirm)
     TextInputEditText inputConfirmPassword;
+    @BindView(R.id.input_login)
+    TextInputEditText inputLogin;
     Unbinder unbinder;
     public MaterialDialog loading;
     private Auth auth;
@@ -60,6 +63,7 @@ public class RegisterFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         unbinder = ButterKnife.bind(this, view);
+        loading = Core.getLoading(getContext());
 
         maskPhone = MaskUtil.insert("(##)#####-####", inputMobile);
         inputMobile.addTextChangedListener(maskPhone);
@@ -108,6 +112,26 @@ public class RegisterFragment extends Fragment {
             inputConfirmPassword.setError(getString(R.string.confirm_password_required));
             isValid = false;
         }
+        if (inputBirthday.getText().toString().isEmpty()) {
+            Log.e("false", "8");
+            inputPassword.setError(getString(R.string.password_required));
+            isValid = false;
+        }
+        if (inputLogin.getText().toString().isEmpty()) {
+            Log.e("false", "8");
+            inputPassword.setError(getString(R.string.password_required));
+            isValid = false;
+        }
+        if (inputCpf.getText().toString().isEmpty()) {
+            Log.e("false", "8");
+            inputCpf.setError(getString(R.string.password_required));
+            isValid = false;
+        }
+        if (inputMobile.getText().toString().isEmpty()) {
+            Log.e("false", "8");
+            inputMobile.setError(getString(R.string.phone));
+            isValid = false;
+        }
 
         if (!inputConfirmPassword.getText().toString().equals(inputPassword.getText().toString())) {
             inputConfirmPassword.setError(getString(R.string.confirm_password_required));
@@ -124,9 +148,13 @@ public class RegisterFragment extends Fragment {
         if (validForm()) {
             loading.show();
             ProfileUser profileUser = new ProfileUser();
-            profileUser.setFirstName(inputName.getText().toString());
+            profileUser.setFullName(inputName.getText().toString());
             profileUser.setEmail(inputEmail.getText().toString());
             profileUser.setPassword(inputPassword.getText().toString());
+            profileUser.setCellPhone(inputMobile.getText().toString());
+            profileUser.setCpf(inputCpf.getText().toString());
+            profileUser.setLogin(inputLogin.getText().toString());
+            profileUser.setDateBirth(inputBirthday.getText().toString());
 
 
             RequestService.sign(getContext(), profileUser, new RequestService.CallbackDefault() {

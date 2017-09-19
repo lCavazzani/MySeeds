@@ -12,15 +12,12 @@ import java.io.Serializable;
 
 public class ProfileUser implements Serializable {
 
-    @SerializedName("firstName")
+    @SerializedName("fullName")
     @Expose
-    public String firstName;
-    @SerializedName("lastName")
+    public String fullName;
+    @SerializedName("cellphone")
     @Expose
-    public String lastName;
-    @SerializedName("phone")
-    @Expose
-    public String phone;
+    public String cellPhone;
     @SerializedName("email")
     @Expose
     public String email;
@@ -33,38 +30,27 @@ public class ProfileUser implements Serializable {
     @SerializedName("facebookId")
     @Expose
     public String facebookId;
-    @SerializedName("photoProfile")
+    @SerializedName("cpf")
     @Expose
-    public String photoProfile;
-    @SerializedName("stateId")
+    public String cpf;
+    @SerializedName("dateBirth")
     @Expose
-    public String stateId;
-    @SerializedName("cityId")
-    @Expose
-    public String cityId;
+    public String dateBirth;
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getCellPhone() {
+        return cellPhone;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
     }
 
     public String getEmail() {
@@ -99,27 +85,21 @@ public class ProfileUser implements Serializable {
         this.facebookId = facebookId;
     }
 
-    public String getPhotoProfile() {
-        return photoProfile;
+    public String getDateBirth() {
+        return dateBirth;
     }
 
-    public void setPhotoProfile(String photoProfile) {
-        this.photoProfile = photoProfile;
+    public void setDateBirth(String dateBirth) {
+        this.dateBirth = dateBirth;
     }
 
-    public String getStateId() {
-        return stateId;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setStateId(String stateId) {
-        this.stateId = stateId;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String getCityId() {
-        return cityId;
-    }
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
-    }
 }
