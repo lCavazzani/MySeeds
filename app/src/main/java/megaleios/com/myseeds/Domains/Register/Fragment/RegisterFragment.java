@@ -172,18 +172,12 @@ public class RegisterFragment extends Fragment {
                         @Override
                         public void onSuccess(JsonObject result) {
                             JsonObject object = result.getAsJsonObject("data");
-                            auth.setFirstName(object.get("firstName").getAsString());
-                            auth.setLastName(object.get("lastName").getAsString());
-                            auth.setPhone(object.get("phone").getAsString());
+                            auth.setFullName(object.get("fullName").getAsString());
+                            auth.setDateBirth(object.get("dateBirth").getAsString());
+                            auth.setCpf(object.get("cpf").getAsString());
                             auth.setEmail(object.get("email").getAsString());
-                            auth.setPhotoProfile(object.get("photoProfile").getAsString());
-                            auth.setDescription(object.get("description").toString());
-                            auth.setCityId(object.getAsJsonObject("city").get("id").getAsString());
-                            auth.setStateId(object.getAsJsonObject("city").get("stateId").getAsString());
-                            auth.setCityName(object.getAsJsonObject("city").get("name").getAsString());
-                            auth.setStateName(object.getAsJsonObject("city").get("uf").getAsString());
-                            auth.setPosts(Integer.valueOf(object.get("posts").getAsString()));
-                            auth.setFriends(Integer.valueOf(object.get("friends").getAsString()));
+                         //   auth.setPhoto(object.get("photo").getAsString());
+                            auth.setCellphone(object.get("cellphone").getAsString());
                             auth.setId(object.get("id").getAsString());
 
                             SessionManager sessionManager = new SessionManager(getActivity());

@@ -46,7 +46,36 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeGrey.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize"
-
+            />
+        <activity
+            android:name=".Domains.Profile.ProfileActivity.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            />
+        <activity
+            android:name=".Domains.Terms.Activity.TermsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            />
+        <activity
+            android:name=".Domains.Help.Activity.HelpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            />
+        <activity
+            android:name=".Domains.ChangePassword.Activity.ChangePasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            />
+        <activity
+            android:name=".Domains.MyCards.Activity.MyCardsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             />
     </application>
 

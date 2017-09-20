@@ -13,6 +13,7 @@ import com.koushikdutta.ion.Response;
 
 import megaleios.com.myseeds.Models.Auth;
 import megaleios.com.myseeds.Models.ProfileUser;
+import megaleios.com.myseeds.Util.SessionManager;
 
 
 /**
@@ -26,10 +27,10 @@ public class RequestService {
         final int innerIndex = index++;
         String token = "";
 
-//        final SessionManager sessionManager = new SessionManager(context);
-//        if (sessionManager.checkLogin()) {
-//            token = sessionManager.getUsuario().getAccessToken();
-//        }
+        final SessionManager sessionManager = new SessionManager(context);
+        if (sessionManager.checkLogin()) {
+            token = sessionManager.getUsuario().getAccessToken();
+        }
 
         Log.i("REQUEST <" + innerIndex + ">", URL);
         Log.i("Access <" + innerIndex + ">", token);
@@ -66,7 +67,7 @@ public class RequestService {
                     String msg = result.getResult().get("message").getAsString();
                     futureCallback.onCompleted(new Exception(msg), result.getResult());
                 } else if (result.getHeaders().code() == 401) {
-
+                    Log.i("ERROR HEADER <", "ERROR");
                 } else {
                     //TODO tratar reauth
                     String msg = result.getHeaders().message() + " - " + result.getHeaders().code();
@@ -85,7 +86,6 @@ public class RequestService {
     private static void postJson(Context context, String URL, final JsonObject dados, final FutureCallback<JsonObject> futureCallback) {
         requisicao(context, URL, dados, futureCallback, "POST");
     }
-
     public static void sign(final Context context, ProfileUser profileUser, final CallbackDefault callback) {
 
         JsonElement element = new Gson().toJsonTree(profileUser);
@@ -110,44 +110,201 @@ public class RequestService {
         });
     }
 
-    public static void getInfo(final Context context, final CallbackDefault callback) {
-        getJson(context, Config.URL_PATH + "api/v1/Profile/GetInfo", new FutureCallback<JsonObject>() {
+    public static void forgotPassword(final Context context, String email, final CallbackDefault callback) {
+
+        JsonObject dados = new JsonObject();
+        dados.addProperty("email", email);
+
+        postJson(context, Config.URL_PATH + "api/v1/Profile/ForgotPassword", dados, new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
-                validacaoBase(e, result, context, callback);
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        Core.getDialog(context, result.get("message").toString()).show();
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, result.get("message").toString()).show();
+                    callback.onError();
+                }
             }
         });
     }
 
+    public static void updateProfile(final Context context, JsonObject dados, final CallbackDefault callback) {
 
-    private static void validacaoBase(Exception e, JsonObject result, Context context, CallbackDefault callback) {
-        if (e == null) {
-            if (Core.validar(context, result)) {
-                callback.onSuccess(result);
-            } else {
-                callback.onError();
+        postJson(context, Config.URL_PATH + "api/v1/Profile/UpdateProfile", dados, new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        Core.getDialog(context, result.get("message").toString()).show();
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, result.get("message").toString()).show();
+                    callback.onError();
+                }
             }
-        } else {
-            showError(e, context);
-            callback.onError();
-        }
+        });
     }
 
-    private static void validacaoError(Exception e, JsonObject result, Context context, CallbackError callback) {
-        if (e == null) {
-            if (Core.validar(context, result)) {
-                callback.onSuccess(result);
-            } else {
-                callback.onError(result);
+    public static void addCard(final Context context, JsonObject dados, final CallbackDefault callback) {
+
+        postJson(context, Config.URL_PATH + "api/v1/CreditCard", dados, new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        Core.getDialog(context, result.get("message").toString()).show();
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, result.get("message").toString()).show();
+                    callback.onError();
+                }
             }
-        } else {
-            callback.onError(result);
-        }
+        });
     }
-    private static void showError(Exception e, Context context) {
-        if (e.getMessage() != null) {
-            Core.getDialog(context, e.getMessage()).show();
-        }
+
+    public static void deleteCard(final Context context, JsonObject dados, final CallbackDefault callback) {
+
+        postJson(context, Config.URL_PATH + "api/v1/CreditCard/Delete", dados, new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        Core.getDialog(context, result.get("message").toString()).show();
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, result.get("message").toString()).show();
+                    callback.onError();
+                }
+            }
+        });
+    }
+
+    public static void updatePassword(final Context context, String profileId, String newPassword, String lastPassword, final CallbackDefault callback) {
+        JsonObject dados = new JsonObject();
+        dados.addProperty("id", profileId);
+        dados.addProperty("newPassword", newPassword);
+        dados.addProperty("password", lastPassword);
+
+        postJson(context, Config.URL_PATH + "api/v1/Profile/UpdatePassword", dados, new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        //   Core.getDialog(context, result.get("message").toString()).show();
+                        callback.onError();
+                    }
+                } else {
+//                    Core.getDialog(context, result.get("message").toString()).show();
+                    callback.onError();
+                }
+            }
+        });
+    }
+
+    public static void login(final Context context, String username, String password, final CallbackDefault callback) {
+
+        Ion.with(context)
+                .load(Config.URL_PATH + "api/v1/Profile/Token")
+                .setBodyParameter("login", username)
+                .setBodyParameter("password", password)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        if (e == null) {
+                            JsonObject json = new Gson().fromJson(result, JsonObject.class);
+                            Log.e("json", json.toString());
+                            if (json.get("erro").getAsBoolean()) {
+                                Core.getDialog(context, json.get("message").toString()).show();
+                                callback.onError();
+                            } else {
+                                callback.onSuccess(json);
+                            }
+                        } else {
+                            Core.getDialog(context, e.getMessage()).show();
+                            //callback.onError(context.getString(R.string.erro_desconhecido));
+                        }
+                    }
+                });
+    }
+
+    public static void loginFace(final Context context, String facebookId, final CallbackDefault callback) {
+
+        Ion.with(context)
+                .load(Config.URL_PATH + "api/v1/Profile/Token")
+                .setBodyParameter("facebookid", facebookId)
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        Log.e("json", result);
+                        if (e == null) {
+                            JsonObject json = new Gson().fromJson(result, JsonObject.class);
+                            Log.e("json", json.toString());
+                            if (json.get("Erro").getAsBoolean()) {
+                                //Core.getDialog(context, json.get("Message").toString()).show();
+                                callback.onError();
+                            } else {
+                                callback.onSuccess(json);
+                            }
+                        } else {
+                            Core.getDialog(context, e.getMessage()).show();
+                            //callback.onError(context.getString(R.string.erro_desconhecido));
+                        }
+                    }
+                });
+    }
+
+    public static void getCards(final Context context, String profileId, final CallbackDefault callback) {
+        getJson(context, Config.URL_PATH + "api/v1/CreditCard/" + profileId, new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, e.getMessage()).show();
+                    callback.onError();
+                }
+            }
+        });
+    }
+
+    public static void getInfo(final Context context, final CallbackDefault callback) {
+        getJson(context, Config.URL_PATH + "api/v1/Profile/GetInfo", new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, e.getMessage()).show();
+                    callback.onError();
+                }
+            }
+        });
     }
 
     public interface CallbackSimple {

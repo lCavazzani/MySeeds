@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Termos de uso"
+        android:layout_margin="16dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod arcu id convallis luctus. Pellentesque et luctus nulla. Fusce aliquet porta ultrices. Praesent nec faucibus odio, nec vestibulum quam. Aliquam ac dignissim metus. Donec fermentum, enim vel cursus vulputate, dolor sapien tristique arcu, sit amet eleifend massa neque sit amet dolor. Pellentesque faucibus libero sit amet leo tempus faucibus. Suspendisse ac luctus ex"
+        android:layout_margin="16dp"/>
+
+
+</LinearLayout>

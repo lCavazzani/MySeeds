@@ -8,9 +8,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,126 +24,135 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:fontFamily="sans-serif"
+                android:text="Meus dados"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                android:textStyle="normal"
-                android:text="Meus dados" />
+                android:textStyle="normal" />
 
             <android.support.v7.widget.CardView
-                android:layout_below="@+id/campanha_title"
+                android:id="@+id/profile_card"
                 android:layout_width="match_parent"
-                android:layout_margin="8dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/campanha_title"
+                android:layout_margin="8dp"
                 android:background="@color/button_material_light"
-                android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="8dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                >
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_weight="1"
-                        android:id="@+id/imageView4" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Debora Ferreira"
-                        android:layout_weight="2"
-                        android:layout_marginStart="33dp"
-                        android:layout_toEndOf="@+id/imageView4"
-                        android:id="@+id/textView6" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="debora@ferreira.com"
-                        android:layout_weight="2"
-                        android:layout_below="@+id/textView6"
-                        android:layout_alignStart="@+id/textView6"
-                        android:layout_marginTop="9dp" />
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="10dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true" />
-                </RelativeLayout>
-
-
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_below="@+id/campanha_title"
-                android:layout_width="match_parent"
-                android:layout_margin="8dp"
-                android:layout_height="wrap_content"
-                android:background="@color/button_material_light"
                 android:foreground="?android:attr/selectableItemBackground"
                 card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="8dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                >
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:id="@+id/imageView5" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Meus cartões"
-                        android:layout_weight="2"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/imageView5"
-                        android:layout_marginStart="33dp" />
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="10dp" />
-                </RelativeLayout>
-
-
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_below="@+id/campanha_title"
-                android:layout_width="match_parent"
-                android:layout_margin="8dp"
-                android:layout_height="wrap_content"
-                android:background="@color/button_material_light"
-                android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="8dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:visibility="gone"
-                >
+                card_view:cardCornerRadius="8dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    >
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/farmer"/>
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="33dp"
+                        android:layout_toEndOf="@+id/imageView4"
+                        android:layout_weight="2"
+                        android:text="Debora Ferreira" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/textView6"
+                        android:layout_below="@+id/textView6"
+                        android:layout_marginTop="9dp"
+                        android:layout_weight="2"
+                        android:text="debora@ferreira.com" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1" />
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/campanha_title"
+                android:layout_margin="8dp"
+                android:background="@color/button_material_light"
+                android:clickable="false"
+                android:focusable="false"
+                android:id="@+id/card_my_cards"
+                android:focusableInTouchMode="false"
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/cartao"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="33dp"
+                        android:layout_toEndOf="@+id/imageView5"
+                        android:layout_weight="2"
+                        android:text="Meus cartões" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1" />
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/campanha_title"
+                android:layout_margin="8dp"
+                android:background="@color/button_material_light"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:visibility="gone"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
                     <ImageView
                         android:id="@+id/imageView6"
@@ -169,184 +180,203 @@
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_below="@+id/campanha_title"
+                android:id="@+id/card_change_password"
                 android:layout_width="match_parent"
-                android:layout_margin="8dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/campanha_title"
+                android:layout_margin="8dp"
                 android:background="@color/button_material_light"
-                android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="8dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                >
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
                     <ImageView
+                        android:id="@+id/imageView5"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:id="@+id/imageView5" />
+                        android:src="@drawable/senha"
+                        android:layout_weight="1" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alterar senha"
-                        android:layout_weight="2"
-                        android:layout_marginStart="33dp"
                         android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/imageView5" />
+                        android:layout_marginStart="33dp"
+                        android:layout_toEndOf="@+id/imageView5"
+                        android:layout_weight="2"
+                        android:text="Alterar senha" />
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1" />
                 </RelativeLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:fontFamily="sans-serif"
-                android:textStyle="normal"
-                android:textColor="#000000"
-                android:text="myseeds"
                 android:layout_margin="16dp"
-                />
+                android:fontFamily="sans-serif"
+                android:text="myseeds"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
             <android.support.v7.widget.CardView
-                android:layout_below="@+id/campanha_title"
                 android:layout_width="match_parent"
-                android:layout_margin="8dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/campanha_title"
+                android:layout_margin="8dp"
                 android:background="@color/button_material_light"
-                android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="8dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                >
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp"
+                android:id="@+id/card_help">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
                     <ImageView
+                        android:id="@+id/imageView5"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:id="@+id/imageView5" />
+                        android:src="@drawable/ajuda"
+                        android:layout_weight="1" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ajuda"
-                        android:layout_weight="2"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="33dp"
                         android:layout_toEndOf="@+id/imageView5"
-                        android:layout_marginStart="33dp" />
+                        android:layout_weight="2"
+                        android:text="Ajuda" />
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1" />
                 </RelativeLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_below="@+id/campanha_title"
                 android:layout_width="match_parent"
-                android:layout_margin="8dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/campanha_title"
+                android:layout_margin="8dp"
                 android:background="@color/button_material_light"
-                android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="8dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                >
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp"
+                android:id="@+id/card_terms">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
                     <ImageView
+                        android:id="@+id/imageView5"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:id="@+id/imageView5" />
+                        android:src="@drawable/termos"
+                        android:layout_weight="1" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Termos de uso"
-                        android:layout_weight="2"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="33dp"
                         android:layout_toEndOf="@+id/imageView5"
-                        android:layout_marginStart="33dp" />
+                        android:layout_weight="2"
+                        android:text="Termos de uso" />
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1" />
                 </RelativeLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_below="@+id/campanha_title"
                 android:layout_width="match_parent"
-                android:layout_margin="8dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/campanha_title"
+                android:layout_margin="8dp"
                 android:background="@color/button_material_light"
-                android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardBackgroundColor="#ffffff"
-                card_view:cardCornerRadius="8dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                >
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="#ffffff"
+                card_view:cardCornerRadius="8dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
                     <ImageView
+                        android:id="@+id/imageView5"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_weight="1"
-                        android:id="@+id/imageView5" />
+                        android:src="@drawable/sair"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sair"
-                        android:layout_weight="2"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="33dp"
                         android:layout_toEndOf="@+id/imageView5"
-                        android:layout_marginStart="33dp" />
+                        android:layout_weight="2"
+                        android:text="Sair" />
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_weight="1"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1" />
                 </RelativeLayout>
 
 

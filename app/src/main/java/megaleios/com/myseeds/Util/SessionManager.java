@@ -16,7 +16,7 @@ public class SessionManager {
     private static final String PREF_NAME = "user";
     private final Context _context;
     private final Gson gson;
-    private static final String USUARIO = "usuario";
+    private static final String USUARIO = "bearer";
     // Shared Preferences
     SharedPreferences pref;
     // Editor for Shared preferences
