@@ -56,9 +56,7 @@ public class RequestService {
                     Log.i("RETORNO <" + innerIndex + ">", String.valueOf(result.getResult()));
                 } else {
                     Log.i("ERROR <" + innerIndex + ">", e.getMessage() == null ? e.toString() : e.getMessage());
-
                 }
-
                 if (e != null) {
                     futureCallback.onCompleted(e, null);
                 } else if (result.getHeaders().code() == 200) {
@@ -115,7 +113,7 @@ public class RequestService {
         JsonObject dados = new JsonObject();
         dados.addProperty("email", email);
 
-        postJson(context, Config.URL_PATH + "api/v1/Profile/ForgotPassword", dados, new FutureCallback<JsonObject>() {
+        postJson(context, Config.URL_PATH + "api/v1/profile/forgotpassword", dados, new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
                 if (e == null) {
@@ -135,7 +133,7 @@ public class RequestService {
 
     public static void updateProfile(final Context context, JsonObject dados, final CallbackDefault callback) {
 
-        postJson(context, Config.URL_PATH + "api/v1/Profile/UpdateProfile", dados, new FutureCallback<JsonObject>() {
+        postJson(context, Config.URL_PATH + "api/v1/profile/update", dados, new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
                 if (e == null) {
@@ -199,7 +197,7 @@ public class RequestService {
         dados.addProperty("newPassword", newPassword);
         dados.addProperty("password", lastPassword);
 
-        postJson(context, Config.URL_PATH + "api/v1/Profile/UpdatePassword", dados, new FutureCallback<JsonObject>() {
+        postJson(context, Config.URL_PATH + "api/v1/profile/updatepassword", dados, new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
                 if (e == null) {
