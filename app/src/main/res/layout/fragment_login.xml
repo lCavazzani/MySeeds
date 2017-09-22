@@ -112,6 +112,7 @@
                 android:textAllCaps="false"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
+                android:onClick="onScanPress"
                 android:textStyle="normal" />
 
             <Button

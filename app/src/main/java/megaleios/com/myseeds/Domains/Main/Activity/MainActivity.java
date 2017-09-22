@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new NotificationFragment(), "Notificacoes", false);
         adapter.addFragment(new HistoryFragment(), "Historico", false);
         adapter.addFragment(new AccountFragment(), "Conta", false);
-       // viewPager.setOffscreenPageLimit(3);
+        // viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                switch (id){
+                switch (id) {
                     case R.id.action_explorer:
                         Log.i("BottomNav", "exp");
                         viewPager.setCurrentItem(0);

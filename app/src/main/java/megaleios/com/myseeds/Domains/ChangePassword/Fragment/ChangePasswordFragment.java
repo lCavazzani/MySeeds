@@ -26,7 +26,7 @@ import megaleios.com.myseeds.Util.SessionManager;
 
 public class ChangePasswordFragment extends Fragment {
 
-//    @BindView(R.id.input_email)
+    //    @BindView(R.id.input_email)
 //    TextInputEditText inputEmail;
     @BindView(R.id.button_change)
     Button btnEntrar;
@@ -49,7 +49,6 @@ public class ChangePasswordFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_change_password, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-
         return view;
     }
 
@@ -61,7 +60,7 @@ public class ChangePasswordFragment extends Fragment {
 
     @OnClick(R.id.button_change)
     public void sendNewPassword() {
-        if(validForm()){
+        if (validForm()) {
             SessionManager sessionManager = new SessionManager(getContext());
             RequestService.updatePassword(getContext(), sessionManager.getUsuario().getId(), inputNewPassword.getText().toString(), inputLastPassword.getText().toString(), new RequestService.CallbackDefault() {
                 @Override
@@ -77,23 +76,23 @@ public class ChangePasswordFragment extends Fragment {
         }
 
     }
+
     private boolean validForm() {
         boolean isValid = true;
 
-        if(inputLastPassword.getText().toString().isEmpty()) {
+        if (inputLastPassword.getText().toString().isEmpty()) {
             inputLastPassword.setError("Favor informar a senha antiga");
             isValid = false;
-        } else if(inputNewPassword.getText().toString().isEmpty()) {
+        } else if (inputNewPassword.getText().toString().isEmpty()) {
             inputNewPassword.setError("Favor informar a nova senha");
             isValid = false;
-        } else if(inputConfirmPassword.getText().toString().isEmpty()) {
+        } else if (inputConfirmPassword.getText().toString().isEmpty()) {
             inputConfirmPassword.setError("Favor confirmar a nova senha");
             isValid = false;
-        } else if(!inputNewPassword.getText().toString().equals(inputConfirmPassword.getText().toString())) {
+        } else if (!inputNewPassword.getText().toString().equals(inputConfirmPassword.getText().toString())) {
             inputConfirmPassword.setError("Senha deve ser igual ao campo anterior");
             isValid = false;
         }
-
         return isValid;
     }
 

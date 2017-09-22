@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.card.payment.CardIOActivity;
 import megaleios.com.myseeds.Domains.Forgot.Activity.ForgotActivity;
 import megaleios.com.myseeds.Domains.Login.Activity.LoginActivity;
 import megaleios.com.myseeds.Domains.Register.Activity.RegisterActivity;
@@ -52,7 +53,7 @@ public class LoginFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         unbinder = ButterKnife.bind(this, view);
-        openRegister = (TextView)view.findViewById(R.id.open_register);
+        openRegister = (TextView) view.findViewById(R.id.open_register);
 
         openRegister.setText(Html.fromHtml(getString(R.string.open_register_text)));
         loading = Core.getLoading(getContext());
@@ -67,11 +68,6 @@ public class LoginFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.button_login)
-    public void login() {
-        Intent i = new Intent(getActivity(), MainActivity.class);
-        startActivity(i);
-    }
 
     @OnClick(R.id.button_login_facebook)
     public void loginFacebook() {
@@ -89,13 +85,14 @@ public class LoginFragment extends Fragment {
         Intent i = new Intent(getActivity(), ForgotActivity.class);
         startActivity(i);
     }
+
     private void callFeed() {
 
-        if(inputEmail.getText().toString().isEmpty()) {
+        if (inputEmail.getText().toString().isEmpty()) {
             inputEmail.setError("Favor informar o login");
-        }else if(inputPassword.getText().toString().isEmpty()){
+        } else if (inputPassword.getText().toString().isEmpty()) {
             inputPassword.setError("Favor informar a senha");
-        }else{
+        } else {
             loading.show();
             new SessionManager(getContext()).logoutUser();
             RequestService.login(getContext(), inputEmail.getText().toString(), inputPassword.getText().toString(), new RequestService.CallbackDefault() {
@@ -145,5 +142,19 @@ public class LoginFragment extends Fragment {
             });
         }
     }
+    public void onScanPress(View v) {
+        Intent scanIntent = new Intent(getContext(), CardIOActivity.class);
 
+        // customize these values to suit your needs.
+        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true); // default: false
+        scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, true);
+        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, false); // default: false
+        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, false); // default: false
+        scanIntent.putExtra(CardIOActivity.EXTRA_SCAN_EXPIRY, true); // default: false
+        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CARDHOLDER_NAME, true); // default: false
+
+
+        // MY_SCAN_REQUEST_CODE is arbitrary and is only used within this activity.
+        startActivityForResult(scanIntent, 200);
+    }
 }

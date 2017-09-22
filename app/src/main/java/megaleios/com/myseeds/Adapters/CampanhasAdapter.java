@@ -37,25 +37,18 @@ public class CampanhasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(mContext).inflate(R.layout.card_explorer, parent, false);
         MyHolder holder=new MyHolder(view);
         return holder;
-
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         MyHolder myHolder= (MyHolder) holder;
-
         try {
             JSONObject mpackid = mPages.getJSONObject(position);
-
             //Do whatever you want here
-
             myHolder.packid.setText(mpackid.optString("id"));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
