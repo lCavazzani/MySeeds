@@ -4,10 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import megaleios.com.myseeds.Domains.Main.Fragment.AccountFragment;
-import megaleios.com.myseeds.Domains.Main.Fragment.ExplorerFragment;
-import megaleios.com.myseeds.Domains.Main.Fragment.HistoryFragment;
-import megaleios.com.myseeds.Domains.Main.Fragment.NotificationFragment;
+//import megaleios.com.myseeds.Domains.Main.Fragment.AccountFragment;
 
 /**
  * Created by ulyssesboumann on 16/08/17.
