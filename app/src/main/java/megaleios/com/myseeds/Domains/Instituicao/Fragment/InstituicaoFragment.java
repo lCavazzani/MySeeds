@@ -52,9 +52,11 @@ import megaleios.com.myseeds.Adapters.NewInstitutionsAdapter;
 import megaleios.com.myseeds.Adapters.OpenInstitutionAdapter;
 import megaleios.com.myseeds.Components.SmoothRecyclerView;
 import megaleios.com.myseeds.Domains.PaymentConfirm.Activity.PaymentConfirmActivity;
+import megaleios.com.myseeds.Domains.PaymentWebView.PaymentWebViewActivity;
 import megaleios.com.myseeds.Helpers.GridSpacingItemDecoration;
 import megaleios.com.myseeds.Models.Campaing;
 import megaleios.com.myseeds.Models.Institution;
+import megaleios.com.myseeds.Models.ValueDonationCampaign;
 import megaleios.com.myseeds.R;
 import megaleios.com.myseeds.Service.RequestService;
 import megaleios.com.myseeds.Util.CustomMaskUtil;
@@ -213,7 +215,9 @@ public class InstituicaoFragment extends Fragment{
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), PaymentConfirmActivity.class);
+                ValueDonationCampaign valor = ValueDonationCampaign.getInstance();
+                Log.i("FIMPF", Integer.parseInt(valor.getCampanha1() + total_value.getText())+"x");
+                Intent i = new Intent(getActivity(), PaymentWebViewActivity.class);
                 startActivity(i);
                 //WEBVIEW
             }
@@ -247,7 +251,6 @@ public class InstituicaoFragment extends Fragment{
                         }
                     }
                 });
-
             }
 
             @Override
@@ -264,7 +267,6 @@ public class InstituicaoFragment extends Fragment{
         JSONObject data = rootObj.getJSONObject("data");
         JSONArray campaing = data.getJSONArray("campaings");
         JSONArray institutions = data.getJSONArray("institutions");
-
 
         textView3.setText(data.getString("name"));
         lorem.setText(data.getString("description"));

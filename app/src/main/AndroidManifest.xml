@@ -83,6 +83,12 @@
             android:theme="@style/AppThemeGrey.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize"
             />
+        <activity
+            android:name=".Domains.PaymentWebView.PaymentWebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            />
     </application>
 
 </manifest>

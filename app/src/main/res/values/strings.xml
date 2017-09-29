@@ -28,6 +28,7 @@
     <string name="password_required">Senha obrigatória</string>
     <string name="confirm_password_required">Confirmar senha obrigatório</string>
     <string name="ok">ok</string>
+    <string name="date">dd-MM-yyyy</string>
 
     <string-array name="parcelas">
         <item>Cidade 1</item>

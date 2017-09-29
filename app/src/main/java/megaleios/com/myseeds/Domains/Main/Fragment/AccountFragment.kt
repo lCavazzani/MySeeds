@@ -28,8 +28,6 @@ class AccountFragment : Fragment() {
     private lateinit var card_terms: CardView
     private lateinit var card_my_cards: CardView
 
-
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         val view = inflater!!.inflate(R.layout.fragment_account, container, false)
