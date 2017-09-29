@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,13 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.jaychang.sa.AuthCallback;
+import com.jaychang.sa.SimpleAuth;
+import com.jaychang.sa.SocialUser;
+
+
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +32,7 @@ import megaleios.com.myseeds.Domains.Login.Activity.LoginActivity;
 import megaleios.com.myseeds.Domains.Register.Activity.RegisterActivity;
 import megaleios.com.myseeds.Domains.Main.Activity.MainActivity;
 import megaleios.com.myseeds.Models.Auth;
+import megaleios.com.myseeds.Models.ProfileUser;
 import megaleios.com.myseeds.R;
 import megaleios.com.myseeds.Service.Core;
 import megaleios.com.myseeds.Service.RequestService;
@@ -40,7 +49,7 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.input_password)
     TextInputEditText inputPassword;
     public MaterialDialog loading;
-
+    String TAG = "TAG";
     TextView openRegister;
 
     public LoginFragment() {
@@ -71,13 +80,20 @@ public class LoginFragment extends Fragment {
 
     @OnClick(R.id.button_login_facebook)
     public void loginFacebook() {
+        connectFacebook();
+
+    }
+    @OnClick(R.id.button_login)
+    public void loginEmail() {
         callFeed();
+
     }
 
     @OnClick(R.id.open_register)
     public void openRegister() {
         Intent i = new Intent(getActivity(), RegisterActivity.class);
         startActivity(i);
+
     }
 
     @OnClick(R.id.forgot_password)
@@ -156,5 +172,33 @@ public class LoginFragment extends Fragment {
 
         // MY_SCAN_REQUEST_CODE is arbitrary and is only used within this activity.
         startActivityForResult(scanIntent, 200);
+    }
+
+    void connectFacebook() {
+        List<String> scopes = Arrays.asList("user_birthday", "user_friends");
+
+        SimpleAuth.getInstance().connectFacebook(scopes, new AuthCallback() {
+            @Override
+            public void onSuccess(SocialUser socialUser) {
+                Log.d(TAG, "userId:" + socialUser.userId);
+                Log.d(TAG, "email:" + socialUser.email);
+                Log.d(TAG, "accessToken:" + socialUser.accessToken);
+                Log.d(TAG, "profilePictureUrl:" + socialUser.profilePictureUrl);
+                Log.d(TAG, "username:" + socialUser.username);
+                Log.d(TAG, "fullName:" + socialUser.fullName);
+                Log.d(TAG, "pageLink:" + socialUser.pageLink);
+            }
+
+
+            @Override
+            public void onError(Throwable error) {
+                Log.d(TAG, error.getMessage());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "Canceled");
+            }
+        });
     }
 }
