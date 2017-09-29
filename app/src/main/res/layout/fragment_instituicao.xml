@@ -36,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/fav"
+                android:visibility="gone"
                 android:layout_alignTop="@+id/textView3"
                 android:layout_alignEnd="@+id/textView2_int" />
             <TextView
@@ -99,6 +100,7 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textSize="14sp"
+                android:visibility="gone"
                 android:textStyle="normal"
                 android:entries="@array/parcelas"
                 android:layout_marginEnd="16dp"
@@ -106,6 +108,23 @@
                 android:layout_below="@+id/divider_title2"
                 android:layout_toEndOf="@+id/imageView3"
                 android:layout_marginStart="8dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#80000000"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:entries="@array/parcelas"
+                android:layout_marginEnd="16dp"
+                android:prompt="@string/parcelasfirst"
+                android:layout_below="@+id/divider_title2"
+                android:layout_toEndOf="@+id/imageView3"
+                android:layout_marginStart="8dp"
+                android:id="@+id/adress"
+                android:text="Av Paulista"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
