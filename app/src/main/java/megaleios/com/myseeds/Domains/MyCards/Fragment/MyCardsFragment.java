@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,6 +33,14 @@ public class MyCardsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_my_cards, container, false);
         unbinder = ButterKnife.bind(this, view);
+        LinearLayout add_card = (LinearLayout) view.findViewById(R.id.add_card);
+
+//        add_card.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
 
         return view;

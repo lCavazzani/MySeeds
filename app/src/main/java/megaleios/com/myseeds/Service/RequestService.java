@@ -315,6 +315,9 @@ public class RequestService {
         void onError();
     }
 
+
+
+
     public interface CallbackError {
         void onSuccess(JsonObject result);
 
@@ -326,5 +329,44 @@ public class RequestService {
 //
 //        void onError(String message);
 //    }
+
+    public static void getFeed(final Context context, String typeFilter, int page, final CallbackDefault callback) {
+        getJson(context, Config.URL_PATH + "api/v1/Instituion/ExplorerFilter/0/1", new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                //Log.e("result", result.toString());
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, e.getMessage()).show();
+                    callback.onError();
+                }
+            }
+        });
+    }
+    public static void getDetailsInstitution(final Context context, String institutionId, int page, final CallbackDefault callback) {
+        getJson(context, Config.URL_PATH + "api/v1/Instituion/DetailsInstitution/"+institutionId+"/1", new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                //Log.e("result", result.toString());
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, e.getMessage()).show();
+                    callback.onError();
+                }
+            }
+        });
+    }
+
+
 
 }

@@ -5,19 +5,19 @@
     android:padding="16dp">
 
 
-        <EditText
-            android:id="@+id/input_email"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:drawablePadding="8dp"
-            style="@style/Theme.Design.Light"
-            android:fontFamily="sans-serif-light"
-            android:hint="Precisa de ajuda? Escreva sua dúvida comentário ou sugestão aqui."
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:textColorHint="#80000000"
-            android:textSize="16sp"
-            android:theme="@style/EditTextAppearance" />
+    <EditText
+        android:id="@+id/input_email"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:drawablePadding="8dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="Precisa de ajuda? Escreva sua dúvida comentário ou sugestão aqui."
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edittext_rounded"
+        android:textAlignment="textStart"
+        android:textColorHint="#80000000"
+        android:textSize="16sp"
+        android:theme="@style/EditTextAppearance" />
 
     <Button
         android:id="@+id/button_send"

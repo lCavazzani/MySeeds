@@ -1,22 +1,14 @@
 package megaleios.com.myseeds.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.google.gson.JsonObject;
+import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,34 +17,29 @@ import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
+
 import megaleios.com.myseeds.Domains.Main.Fragment.ExplorerFragment;
-import megaleios.com.myseeds.Models.Campaing;
+import megaleios.com.myseeds.Models.Institution;
 import megaleios.com.myseeds.R;
 import megaleios.com.myseeds.Util.SessionManager;
 
-import static android.R.attr.fragment;
-import static android.R.attr.id;
 
 /**
  * Created by user on 14/07/17.
  */
 
-public class CampanhasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class InstitutionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Campaing> data;
+    private List<Institution> dataInstitution;
     private Context mContext;
-    public static final int ITEM_TYPE_POST = 0;
-    public static final int ITEM_TYPE_EVENT = 1;
     public static final int ITEM_TYPE_COURSE = 2;
-    private Campaing feed;
+    private Institution feedInstitution;
     private SessionManager sessionManager;
     private ExplorerFragment fragment;
 
 
-    public CampanhasAdapter(Context context, List<Campaing> data, ExplorerFragment feedFragment) {
-        this.data = data;
+    public InstitutionAdapter(Context context, List<Institution> data, ExplorerFragment feedFragment) {
+        this.dataInstitution = data;
         mContext = context;
         this.fragment = feedFragment;
     }
@@ -69,8 +56,8 @@ public class CampanhasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         View view = null;
         sessionManager = new SessionManager(mContext);
 
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_explorer, parent, false);
-            return new CampanhasAdapter.ViewHolder(view);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_institution_explorer, parent, false);
+        return new InstitutionAdapter.ViewHolder(view);
 
 
 
@@ -80,37 +67,37 @@ public class CampanhasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final int itemType = getItemViewType(position);
 
-        feed = data.get(position);
-            ViewHolder post = (ViewHolder) holder;
-            post.feed = feed;
-            post.profileName.setText(feed.getName());
+        feedInstitution = dataInstitution.get(position);
+        ViewHolder post = (ViewHolder) holder;
+        post.feed = feedInstitution;
+    //    post.textmy_int.setText((CharSequence) feedInstitution.getCompany());
+     //   post.textView_int.setText(feedInstitution.getTotalContributions());
     }
 
 
     @Override
     public int getItemViewType(int position) {
-
         return ITEM_TYPE_COURSE;
-
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return dataInstitution.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        protected Campaing feed;
-        protected ImageView menu;
+        Institution feed;
+        ImageView menu;
 
-
-
-
-        @BindView(R.id.textmy)
-        TextView profileName;
-
-
+        @BindView(R.id.textmy_int)
+        TextView textmy_int;
+        @BindView(R.id.textView_int)
+        TextView textView_int;
+        @BindView(R.id.qnt_campaing)
+        TextView qnt_campaing;
+        @BindView(R.id.textView2_int)
+        TextView textView2_int;
 
         ViewHolder(View view) {
             super(view);

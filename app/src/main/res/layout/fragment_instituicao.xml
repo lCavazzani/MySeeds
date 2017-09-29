@@ -74,6 +74,7 @@
                 android:layout_toEndOf="@+id/textView_int"
                 android:fontFamily="sans-serif"
                 android:gravity="end"
+                android:id="@+id/number_campaign"
                 android:text="7 campanhas"
                 android:textColor="#ec407a"
                 android:textStyle="bold" />
