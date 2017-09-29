@@ -2,6 +2,7 @@ package megaleios.com.myseeds.Domains.Instituicao.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
 import android.os.Build;
@@ -9,9 +10,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,9 +46,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import megaleios.com.myseeds.Adapters.CampanhasAdapter;
 import megaleios.com.myseeds.Adapters.NewCampaignAdapter;
 import megaleios.com.myseeds.Adapters.NewInstitutionsAdapter;
+import megaleios.com.myseeds.Adapters.OpenInstitutionAdapter;
+import megaleios.com.myseeds.Components.SmoothRecyclerView;
 import megaleios.com.myseeds.Domains.PaymentConfirm.Activity.PaymentConfirmActivity;
+import megaleios.com.myseeds.Helpers.GridSpacingItemDecoration;
 import megaleios.com.myseeds.Models.Campaing;
 import megaleios.com.myseeds.Models.Institution;
 import megaleios.com.myseeds.R;
@@ -67,6 +75,12 @@ public class InstituicaoFragment extends Fragment{
     TextView lorem;
     TextView textView_int;
     TextView number_campaign;
+    TextView address;
+    TextView limit;
+    private SmoothRecyclerView mCampanhas;
+    private OpenInstitutionAdapter adapter;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,9 +90,12 @@ public class InstituicaoFragment extends Fragment{
         mID = intent.getStringExtra("id");
         textView3 = (TextView) view.findViewById(R.id.textView3);
         lorem = (TextView) view.findViewById(R.id.lorem);
+        textView_int = (TextView) view.findViewById(R.id.textView_int);
+        number_campaign = (TextView) view.findViewById(R.id.number_campaign);
+        address = (TextView) view.findViewById(R.id.adress);
+        limit = (TextView) view.findViewById(R.id.limit);
 
-        final EditText button_camp_1 = (EditText) view.findViewById(R.id.button);
-        final EditText button_camp_2 = (EditText) view.findViewById(R.id.contribuir_button);
+
         final EditText button_contribuir = (EditText) view.findViewById(R.id.button_contribuir);
         final LinearLayout finish_contribuir = (LinearLayout) view.findViewById(R.id.finish_contribuir);
         final LinearLayout add_more = (LinearLayout) view.findViewById(R.id.add_more);
@@ -93,39 +110,53 @@ public class InstituicaoFragment extends Fragment{
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        button_camp_1.setRawInputType(Configuration.KEYBOARD_12KEY);
-        button_camp_2.setRawInputType(Configuration.KEYBOARD_12KEY);
         button_contribuir.setRawInputType(Configuration.KEYBOARD_12KEY);
 
-        button_camp_1.addTextChangedListener(new TextWatcher(){
-            //DecimalFormat dec = new DecimalFormat("0.00");
-            @Override
-            public void afterTextChanged(final Editable arg0) {
-                if(!arg0.toString().equals(current)){
-//                            String bottom_value = total_value.getText().toString();
-//                            String number_total  = bottom_value.replaceAll("[^0-9]", "");//remove $
-//                            String value_arg = arg0.toString();
-//                            String number_arg  = value_arg.replaceAll("[^0-9]", "");//remove $
-//
-//                            int final_int = Integer.parseInt(number_arg)+ Integer.parseInt(number_total);
-//                            total_value.setText(Integer.toString(final_int));
+        button_contribuir.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    String sum_value = total_value.getText().toString();
+                    String sum_number  = sum_value.replaceAll("[^0-9]", "");
+                    int final_int = Integer.parseInt(v.getText().toString())+ Integer.parseInt(sum_number);
+                    total_value.setText(String.valueOf(final_int));
                 }
+                return false;
             }
+        });
+        button_contribuir.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                finish_contribuir.setVisibility(View.VISIBLE);
-                add_more.setVisibility(View.VISIBLE);
-            }
-            private String current = "";
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!s.toString().equals(current)){
-//                   +
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+//                    String sum_value = total_value.getText().toString();
+//                    String sum_number  = sum_value.replaceAll("[^0-9]", "");
+//                    if(!button_contribuir.getText().equals("")){
+//                        int final_int = Integer.parseInt(button_contribuir.getText().toString())- Integer.parseInt(sum_number);
+//                    }
+                    button_contribuir.setText("");
+                    button_contribuir.setHint("0,00");
+                    finish_contribuir.setVisibility(View.VISIBLE);
+                    add_more.setVisibility(View.VISIBLE);
+                } else {
                 }
             }
         });
+        button_contribuir.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         more_money_three.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +165,7 @@ public class InstituicaoFragment extends Fragment{
                 String sum_number  = sum_value.replaceAll("[^0-9]", "");
                 String view_value = more_money_three.getText().toString();
                 String view_number  = view_value.replaceAll("[^0-9]", "");
-                int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
+                int final_int = Integer.parseInt(view_number + sum_number);
                 total_value.setText(String.valueOf(final_int));
             }
         });
@@ -184,8 +215,15 @@ public class InstituicaoFragment extends Fragment{
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), PaymentConfirmActivity.class);
                 startActivity(i);
+                //WEBVIEW
             }
         });
+        GridLayoutManager linearLayoutManager
+                = new GridLayoutManager (getContext(),1,GridLayoutManager.VERTICAL,false);
+        mCampanhas= (SmoothRecyclerView)view.findViewById(R.id.campaign_list);
+        mCampanhas.setLayoutManager(linearLayoutManager);
+        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(12, dpToPx(8), true));
+        mCampanhas.setItemAnimator(new DefaultItemAnimator());
         getFeedNew(sessionManager);
         return view;
     }
@@ -224,24 +262,33 @@ public class InstituicaoFragment extends Fragment{
 
         JSONObject rootObj = new JSONObject(jsonData);
         JSONObject data = rootObj.getJSONObject("data");
-      //  JSONArray campaing = data.getJSONArray("campaigns");
+        JSONArray campaing = data.getJSONArray("campaings");
         JSONArray institutions = data.getJSONArray("institutions");
+
 
         textView3.setText(data.getString("name"));
         lorem.setText(data.getString("description"));
+        textView_int.setText(data.optString("totalContributions"));
+        number_campaign.setText(data.optString("totalCampaigns"));
+        address.setText(institutions.getJSONObject(0).getString("address"));
+        limit.setText(data.optString("minimumContribution"));
         TextView lorem;
         TextView textView_int;
         TextView number_campaign;
 
 //        rootArray = rootObj.getJSONArray("value");
 ////
-//        adapter = new NewCampaignAdapter(getContext(), campaing);
+        adapter = new OpenInstitutionAdapter(getContext(), campaing);
 //        adapterInstitution = new NewInstitutionsAdapter(getContext(), institutions);
 //
 ////
 ////        mSuggestionListViewBemEstar.setFocusable(false);
 ////
-//        mCampanhas.setAdapter(adapterNew);
+         mCampanhas.setAdapter(adapter);
 //        mInstituicao.setAdapter(adapterInstitution);
+    }
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 }

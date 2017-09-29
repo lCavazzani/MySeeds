@@ -33,26 +33,26 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         mPages = pages;
     }
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.card_institution_explorer, parent, false);
-        MyHolder holder=new MyHolder(view);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.card_campaing_donate, parent, false);
+        OpenInstitutionAdapter.MyHolder holder=new OpenInstitutionAdapter.MyHolder(view);
         return holder;
 
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        MyHolder myHolder= (MyHolder) holder;
+        OpenInstitutionAdapter.MyHolder myHolder= (OpenInstitutionAdapter.MyHolder) holder;
 
         try {
             JSONObject mpackid = mPages.getJSONObject(position);
-            myHolder.textmy_int.setText(mpackid.getJSONObject("company").getString("name"));
-            myHolder.textView_int.setText(mpackid.optString("totalContributions"));
-            myHolder.qnt_campaing.setText(mpackid.optString("totalCampaigns"));
-            myHolder.textView2_int.setText(mpackid.getString("address"));
-            myHolder.institutionID.setText(mpackid.getString("id"));
+            String murl = mpackid.optString("name");
+            String totalDonation = mpackid.optString("totalDonation");
+            String price = mpackid.optString("price");
+            myHolder.textmy.setText(murl);
+            myHolder.textView.setText("R$ "+ totalDonation+" de "+price);
+            myHolder.date_end.setText(mpackid.optString("endCampaign"));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -75,21 +75,16 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
     class MyHolder extends RecyclerView.ViewHolder{
 
-        TextView textmy_int;
-        TextView textView_int;
-        TextView qnt_campaing;
-        TextView textView2_int;
-        TextView institutionID;
+        TextView textmy;
+        TextView textView;
+        TextView date_end;
 
         // create constructor to get widget reference
         public MyHolder(View itemView) {
             super(itemView);
-            textmy_int = (TextView) itemView.findViewById(R.id.textmy_int);
-            textView_int = (TextView) itemView.findViewById(R.id.textView_int);
-            qnt_campaing = (TextView) itemView.findViewById(R.id.qnt_campaing);
-            textView2_int = (TextView) itemView.findViewById(R.id.textView2_int);
-            institutionID = (TextView) itemView.findViewById(R.id.institutionID);
-
+            textmy = (TextView) itemView.findViewById(R.id.textmy);
+            textView = (TextView) itemView.findViewById(R.id.textView);
+            date_end = (TextView) itemView.findViewById(R.id.date_end);
 
         }
 
