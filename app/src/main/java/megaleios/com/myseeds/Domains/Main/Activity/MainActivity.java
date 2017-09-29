@@ -1,19 +1,15 @@
 package megaleios.com.myseeds.Domains.Main.Activity;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import megaleios.com.myseeds.Adapters.FragmentAdapter;
-import megaleios.com.myseeds.Domains.Main.Fragment.AccountFragment;
 import megaleios.com.myseeds.Domains.Main.Fragment.ExplorerFragment;
 import megaleios.com.myseeds.Domains.Main.Fragment.HistoryFragment;
 import megaleios.com.myseeds.Domains.Main.Fragment.NotificationFragment;
@@ -38,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new ExplorerFragment(), "Explorar", false);
         adapter.addFragment(new NotificationFragment(), "Notificacoes", false);
         adapter.addFragment(new HistoryFragment(), "Historico", false);
-        adapter.addFragment(new AccountFragment(), "Conta", false);
+        //adapter.addFragment(new AccountFragment(), "Conta", false);
         // viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
 
