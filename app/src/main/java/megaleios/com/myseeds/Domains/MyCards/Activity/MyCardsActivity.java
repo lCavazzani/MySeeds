@@ -111,8 +111,9 @@ public class MyCardsActivity extends AppCompatActivity {
                 dados.addProperty("profileId", sessionManager.getUsuario().getId());
                 dados.addProperty("name", scanResult.cardholderName.toString());
                 dados.addProperty("number",scanResult.getRedactedCardNumber().toString());
-                dados.addProperty("expMonth", scanResult.expiryMonth);
-                dados.addProperty("expYear",scanResult.expiryYear);
+                dados.addProperty("expMonth", Integer.parseInt(String.valueOf(scanResult.expiryMonth)));
+                dados.addProperty("expYear",Integer.parseInt(String.valueOf(scanResult.expiryYear)));
+                dados.addProperty("flag", "Visa");
                 dados.addProperty("cvv", scanResult.cvv);
                 RequestService.addCard(this, dados, new RequestService.CallbackDefault() {
                     @Override

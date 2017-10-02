@@ -153,7 +153,7 @@ public class RequestService {
 
     public static void addCard(final Context context, JsonObject dados, final CallbackDefault callback) {
 
-        postJson(context, Config.URL_PATH + "api/v1/CreditCard", dados, new FutureCallback<JsonObject>() {
+        postJson(context, Config.URL_PATH + "api/v1/CreditCard/", dados, new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
                 if (e == null) {
@@ -361,6 +361,26 @@ public class RequestService {
                     }
                 } else {
                     Core.getDialog(context, e.getMessage()).show();
+                    callback.onError();
+                }
+            }
+        });
+    }
+
+    public static void getDonation(final Context context, JsonObject dados, final CallbackDefault callback) {
+
+        postJson(context, Config.URL_PATH + "api/v1/Donation", dados, new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        Core.getDialog(context, result.get("message").toString()).show();
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, result.get("message").toString()).show();
                     callback.onError();
                 }
             }

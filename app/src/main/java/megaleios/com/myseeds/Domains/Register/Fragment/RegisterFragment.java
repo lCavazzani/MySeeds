@@ -51,7 +51,7 @@ public class RegisterFragment extends Fragment {
     public MaterialDialog loading;
     private Auth auth;
 
-
+    String facebook;
     private TextWatcher maskPhone, maskCpf, maskBirthday;
     public RegisterFragment() {
         // Required empty public constructor
@@ -64,6 +64,17 @@ public class RegisterFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         unbinder = ButterKnife.bind(this, view);
         loading = Core.getLoading(getContext());
+
+        Intent i = getActivity().getIntent();
+
+         facebook = i.getStringExtra("Facebook");
+        auth = new Auth();
+        if(facebook.equals("true")){
+            inputName.setText(i.getStringExtra("name"));
+            inputEmail.setText(i.getStringExtra("email"));
+            inputPassword.setVisibility(View.GONE);
+            inputConfirmPassword.setVisibility(View.GONE);
+        }
 
         maskPhone = MaskUtil.insert("(##)#####-####", inputMobile);
         inputMobile.addTextChangedListener(maskPhone);
@@ -102,15 +113,19 @@ public class RegisterFragment extends Fragment {
             isValid = false;
         }
 
-        if (inputPassword.getText().toString().isEmpty()) {
-            Log.e("false", "8");
-            inputPassword.setError(getString(R.string.password_required));
-            isValid = false;
+        if(!facebook.equals("true")) {
+            if (inputPassword.getText().toString().isEmpty()) {
+                Log.e("false", "8");
+                inputPassword.setError(getString(R.string.password_required));
+                isValid = false;
+            }
         }
-        if (inputConfirmPassword.getText().toString().isEmpty()) {
-            Log.e("false", "9");
-            inputConfirmPassword.setError(getString(R.string.confirm_password_required));
-            isValid = false;
+        if(!facebook.equals("true")){
+            if (inputConfirmPassword.getText().toString().isEmpty()) {
+                Log.e("false", "9");
+                inputConfirmPassword.setError(getString(R.string.confirm_password_required));
+                isValid = false;
+            }
         }
         if (inputBirthday.getText().toString().isEmpty()) {
             Log.e("false", "8");
