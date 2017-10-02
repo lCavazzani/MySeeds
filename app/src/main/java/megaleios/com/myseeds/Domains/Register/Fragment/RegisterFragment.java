@@ -65,6 +65,17 @@ public class RegisterFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         loading = Core.getLoading(getContext());
 
+        Intent i = getActivity().getIntent();
+
+        String facebook = i.getStringExtra("Facebook");
+        auth = new Auth();
+        if(facebook.equals("true")){
+            inputName.setText(i.getStringExtra("name"));
+            inputEmail.setText(i.getStringExtra("email"));
+            inputPassword.setVisibility(View.GONE);
+            inputConfirmPassword.setVisibility(View.GONE);
+        }
+
         maskPhone = MaskUtil.insert("(##)#####-####", inputMobile);
         inputMobile.addTextChangedListener(maskPhone);
 

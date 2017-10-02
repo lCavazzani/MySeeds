@@ -153,7 +153,7 @@ public class RequestService {
 
     public static void addCard(final Context context, JsonObject dados, final CallbackDefault callback) {
 
-        postJson(context, Config.URL_PATH + "api/v1/CreditCard", dados, new FutureCallback<JsonObject>() {
+        postJson(context, Config.URL_PATH + "api/v1/CreditCard/", dados, new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
                 if (e == null) {

@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.input_password)
     TextInputEditText inputPassword;
     public MaterialDialog loading;
-    String TAG = "TAG";
+    String TAG = "TAGLOGIN";
     TextView openRegister;
 
     public LoginFragment() {
@@ -180,6 +180,9 @@ public class LoginFragment extends Fragment {
         SimpleAuth.getInstance().connectFacebook(scopes, new AuthCallback() {
             @Override
             public void onSuccess(SocialUser socialUser) {
+                final Auth auth = new Auth();
+                auth.setFullName(socialUser.fullName);
+                auth.setEmail(socialUser.email);
                 Log.d(TAG, "userId:" + socialUser.userId);
                 Log.d(TAG, "email:" + socialUser.email);
                 Log.d(TAG, "accessToken:" + socialUser.accessToken);
@@ -187,6 +190,13 @@ public class LoginFragment extends Fragment {
                 Log.d(TAG, "username:" + socialUser.username);
                 Log.d(TAG, "fullName:" + socialUser.fullName);
                 Log.d(TAG, "pageLink:" + socialUser.pageLink);
+
+                Intent i = new Intent(getActivity(), RegisterActivity.class);
+                i.putExtra("Facebook", "true");
+                i.putExtra("name", socialUser.fullName.toString());
+                i.putExtra("email", socialUser.email.toString());
+                startActivity(i);
+
             }
 
 
