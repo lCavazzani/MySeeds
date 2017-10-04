@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -51,9 +52,12 @@ import megaleios.com.myseeds.Adapters.NewCampaignAdapter;
 import megaleios.com.myseeds.Adapters.NewInstitutionsAdapter;
 import megaleios.com.myseeds.Adapters.OpenInstitutionAdapter;
 import megaleios.com.myseeds.Components.SmoothRecyclerView;
+import megaleios.com.myseeds.Domains.Instituicao.Activity.InstituicaoActivity;
+import megaleios.com.myseeds.Domains.Main.Activity.MainActivity;
 import megaleios.com.myseeds.Domains.PaymentConfirm.Activity.PaymentConfirmActivity;
 import megaleios.com.myseeds.Domains.PaymentWebView.PaymentWebViewActivity;
 import megaleios.com.myseeds.Helpers.GridSpacingItemDecoration;
+import megaleios.com.myseeds.Models.Auth;
 import megaleios.com.myseeds.Models.Campaing;
 import megaleios.com.myseeds.Models.Institution;
 import megaleios.com.myseeds.Models.ValueDonationCampaign;
@@ -81,6 +85,7 @@ public class InstituicaoFragment extends Fragment{
     TextView limit;
     private SmoothRecyclerView mCampanhas;
     private OpenInstitutionAdapter adapter;
+    Auth auth;
 
 
     @Override
@@ -96,6 +101,7 @@ public class InstituicaoFragment extends Fragment{
         number_campaign = (TextView) view.findViewById(R.id.number_campaign);
         address = (TextView) view.findViewById(R.id.adress);
         limit = (TextView) view.findViewById(R.id.limit);
+
 
 
         final EditText button_contribuir = (EditText) view.findViewById(R.id.button_contribuir);
@@ -159,7 +165,6 @@ public class InstituicaoFragment extends Fragment{
             }
         });
 
-
         more_money_three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,7 +172,7 @@ public class InstituicaoFragment extends Fragment{
                 String sum_number  = sum_value.replaceAll("[^0-9]", "");
                 String view_value = more_money_three.getText().toString();
                 String view_number  = view_value.replaceAll("[^0-9]", "");
-                int final_int = Integer.parseInt(view_number + sum_number);
+                int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
                 total_value.setText(String.valueOf(final_int));
             }
         });
@@ -216,17 +221,61 @@ public class InstituicaoFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 ValueDonationCampaign valor = ValueDonationCampaign.getInstance();
-                Log.i("FIMPF", Integer.parseInt(valor.getCampanha1() + total_value.getText())+"x");
-                Intent i = new Intent(getActivity(), PaymentWebViewActivity.class);
-                startActivity(i);
-                //WEBVIEW
+//                Log.i("FIMPF", Integer.parseInt(valor.getCampanha1() + total_value.getText())+"x");
+                JSONObject obj = new JSONObject();
+                JSONArray array = new JSONArray();
+                SessionManager sessionManager = new SessionManager(getContext());
+                for(int i = 0; i < 1; i++){
+                    JSONObject objFromArray = new JSONObject();
+                    try {
+                        objFromArray.put("campaignId", "59c94b2f4d513d3da09b1b5c");
+                        objFromArray.put("name", "Campanha cobertor");
+                        objFromArray.put("type", 1);
+                        objFromArray.put("donationValue", 10);
+                        array.put(objFromArray);
+                        obj.put("donatations", array);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+                    obj.put("profileId", sessionManager.getUsuario().getId());
+                    obj.put("creditCardId", null);
+                    obj.put("isPaidFees", true);
+                    obj.put("isRequestDonatation", true);
+                    obj.put("amountFees", 0);
+                    obj.put("totalDonationAmout", 10);
+                    obj.put("institutionId", "59c94b2f4d513d3da09b1b5b");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                JsonParser jsonParser = new JsonParser();
+                JsonObject gsonObject = (JsonObject)jsonParser.parse(obj.toString());
+                Log.i("JASON", gsonObject.toString());
+                RequestService.getDonation(getActivity(), gsonObject, new RequestService.CallbackDefault() {
+                    @Override
+                    public void onSuccess(JsonObject result) {
+                        Intent intent = new Intent(getActivity(), PaymentWebViewActivity.class);
+                        startActivity(intent);
+                        //WEBVIEW
+                        Log.e("string", "success");
+                    }
+                    @Override
+                    public void onError() {
+
+                        Log.e("string", "no success");
+                    }
+                });
+
             }
         });
         GridLayoutManager linearLayoutManager
                 = new GridLayoutManager (getContext(),1,GridLayoutManager.VERTICAL,false);
         mCampanhas= (SmoothRecyclerView)view.findViewById(R.id.campaign_list);
         mCampanhas.setLayoutManager(linearLayoutManager);
-        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(12, dpToPx(8), true));
+        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(8), true));
         mCampanhas.setItemAnimator(new DefaultItemAnimator());
         getFeedNew(sessionManager);
         return view;

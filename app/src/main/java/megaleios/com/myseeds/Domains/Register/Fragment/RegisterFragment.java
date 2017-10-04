@@ -85,9 +85,6 @@ public class RegisterFragment extends Fragment {
         maskBirthday = MaskUtil.insert("##/##/####", inputBirthday);
         inputBirthday.addTextChangedListener(maskBirthday);
 
-        auth = new Auth();
-
-
         return view;
     }
 

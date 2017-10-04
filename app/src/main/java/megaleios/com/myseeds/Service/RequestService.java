@@ -369,7 +369,7 @@ public class RequestService {
 
     public static void getDonation(final Context context, JsonObject dados, final CallbackDefault callback) {
 
-        postJson(context, Config.URL_PATH + "api/v1/Donation", dados, new FutureCallback<JsonObject>() {
+        postJson(context, Config.URL_PATH + "api/v1/Donatation", dados, new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
                 if (e == null) {

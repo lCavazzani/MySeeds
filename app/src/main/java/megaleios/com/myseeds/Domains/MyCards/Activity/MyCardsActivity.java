@@ -110,7 +110,7 @@ public class MyCardsActivity extends AppCompatActivity {
                 JsonObject dados = new JsonObject();
                 dados.addProperty("profileId", sessionManager.getUsuario().getId());
                 dados.addProperty("name", scanResult.cardholderName.toString());
-                dados.addProperty("number",scanResult.getRedactedCardNumber().toString());
+                dados.addProperty("number",scanResult.getFormattedCardNumber().toString());
                 dados.addProperty("expMonth", Integer.parseInt(String.valueOf(scanResult.expiryMonth)));
                 dados.addProperty("expYear",Integer.parseInt(String.valueOf(scanResult.expiryYear)));
                 dados.addProperty("flag", "Visa");

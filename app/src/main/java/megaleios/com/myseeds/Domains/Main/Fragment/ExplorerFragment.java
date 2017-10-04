@@ -78,7 +78,7 @@ public class ExplorerFragment extends Fragment{
                 = new GridLayoutManager (getContext(),1,GridLayoutManager.HORIZONTAL,false);
         mCampanhas= (SmoothRecyclerView)view.findViewById(R.id.campanhas_list);
         mCampanhas.setLayoutManager(linearLayoutManager);
-        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(12, dpToPx(8), true));
+        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(1), true));
         mCampanhas.setItemAnimator(new DefaultItemAnimator());
         SnapHelper helper = new LinearSnapHelper();
         helper.attachToRecyclerView(mCampanhas);
