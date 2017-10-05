@@ -93,7 +93,7 @@
                 android:layout_marginTop="16dp"
                 android:background="#EEE" />
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="46dp"
                 android:hint="CONTRIBUIR"
                 android:textSize="12dp"

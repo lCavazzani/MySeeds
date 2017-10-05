@@ -85,6 +85,8 @@ public class InstituicaoFragment extends Fragment{
     TextView limit;
     private SmoothRecyclerView mCampanhas;
     private OpenInstitutionAdapter adapter;
+    ArrayList<String> list = new ArrayList<String>();
+    int lenghtDonatation;
     Auth auth;
 
 
@@ -225,12 +227,12 @@ public class InstituicaoFragment extends Fragment{
                 JSONObject obj = new JSONObject();
                 JSONArray array = new JSONArray();
                 SessionManager sessionManager = new SessionManager(getContext());
-                for(int i = 0; i < 1; i++){
+                for(int i = 0; i < lenghtDonatation; i++){
                     JSONObject objFromArray = new JSONObject();
                     try {
-                        objFromArray.put("campaignId", "59c94b2f4d513d3da09b1b5c");
-                        objFromArray.put("name", "Campanha cobertor");
-                        objFromArray.put("type", 1);
+                        objFromArray.put("campaignId", null);
+                        objFromArray.put("name", "");
+                        objFromArray.put("type", 0);
                         objFromArray.put("donationValue", 10);
                         array.put(objFromArray);
                         obj.put("donatations", array);
@@ -319,24 +321,17 @@ public class InstituicaoFragment extends Fragment{
 
         textView3.setText(data.getString("name"));
         lorem.setText(data.getString("description"));
-        textView_int.setText(data.optString("totalContributions"));
-        number_campaign.setText(data.optString("totalCampaigns"));
+        textView_int.setText(data.optString("totalContributions"+" contribuições"));
+        number_campaign.setText(data.optString("totalCampaigns"+" campanhas"));
         address.setText(institutions.getJSONObject(0).getString("address"));
-        limit.setText(data.optString("minimumContribution"));
+        limit.setText(data.optString("minimumContribution" + " Doação mínima"));
         TextView lorem;
         TextView textView_int;
-        TextView number_campaign;
 
-//        rootArray = rootObj.getJSONArray("value");
-////
         adapter = new OpenInstitutionAdapter(getContext(), campaing);
-//        adapterInstitution = new NewInstitutionsAdapter(getContext(), institutions);
-//
-////
-////        mSuggestionListViewBemEstar.setFocusable(false);
-////
+        lenghtDonatation = campaing.length();
+
          mCampanhas.setAdapter(adapter);
-//        mInstituicao.setAdapter(adapterInstitution);
     }
     private int dpToPx(int dp) {
         Resources r = getResources();
