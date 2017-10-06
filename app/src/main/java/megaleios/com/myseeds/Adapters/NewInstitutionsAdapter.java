@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,10 +51,11 @@ public class NewInstitutionsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         try {
             JSONObject mpackid = mPages.getJSONObject(position);
             myHolder.textmy_int.setText(mpackid.getJSONObject("company").getString("name"));
-            myHolder.textView_int.setText(mpackid.optString("totalContributions"));
-            myHolder.qnt_campaing.setText(mpackid.optString("totalCampaigns"));
+            myHolder.textView_int.setText(mpackid.optString("totalContributions")+ " contribuições");
+            myHolder.qnt_campaing.setText(mpackid.optString("totalCampaigns")+" campanhas");
             myHolder.textView2_int.setText(mpackid.getString("address"));
             myHolder.institutionID.setText(mpackid.getString("id"));
+            Glide.with(mContext).load(mpackid.getJSONObject("company").optString("logo")).into(myHolder.imageView2);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -80,6 +83,7 @@ public class NewInstitutionsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView qnt_campaing;
         TextView textView2_int;
         TextView institutionID;
+        ImageView imageView2;
 
         // create constructor to get widget reference
         public MyHolder(View itemView) {
@@ -89,8 +93,7 @@ public class NewInstitutionsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             qnt_campaing = (TextView) itemView.findViewById(R.id.qnt_campaing);
             textView2_int = (TextView) itemView.findViewById(R.id.textView2_int);
             institutionID = (TextView) itemView.findViewById(R.id.institutionID);
-
-
+            imageView2 = (ImageView) itemView.findViewById(R.id.imageView2);
         }
 
     }

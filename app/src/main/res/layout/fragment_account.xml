@@ -63,7 +63,7 @@
                         android:layout_marginStart="33dp"
                         android:layout_toEndOf="@+id/imageView4"
                         android:layout_weight="2"
-                        android:text="Debora Ferreira" />
+                        android:text="" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -72,7 +72,8 @@
                         android:layout_below="@+id/textView6"
                         android:layout_marginTop="9dp"
                         android:layout_weight="2"
-                        android:text="debora@ferreira.com" />
+                        android:text=""
+                        android:id="@+id/user_email"/>
 
                     <ImageView
                         android:layout_width="24dp"
@@ -344,6 +345,7 @@
                 android:clickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:id="@+id/card_exit"
                 android:foreground="?android:attr/selectableItemBackground"
                 card_view:cardBackgroundColor="#ffffff"
                 card_view:cardCornerRadius="8dp">

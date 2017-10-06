@@ -45,6 +45,7 @@ public class ProfileFragment extends Fragment {
     TextView cpf;
     Unbinder unbinder;
     private SessionManager sessionManager;
+    Auth auth;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -53,6 +54,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        auth = Auth.getInstance();
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         unbinder = ButterKnife.bind(this, view);
@@ -68,11 +70,11 @@ public class ProfileFragment extends Fragment {
         if(sessionManager.getUsuario().getEmail() != null && !sessionManager.getUsuario().getEmail().isEmpty()) {
             email.setText(sessionManager.getUsuario().getEmail().trim());
         }
-        if(sessionManager.getUsuario().getCpf() != null && !sessionManager.getUsuario().getCpf().isEmpty()) {
-            cpf.setHint(sessionManager.getUsuario().getCpf().trim());
+        if(auth.getCpf() != null && !auth.getCpf().isEmpty()) {
+            cpf.setHint(auth.getCpf());
         }
         if(sessionManager.getUsuario().getCellphone() != null && !sessionManager.getUsuario().getCellphone().isEmpty()) {
-            cellphone.setHint(sessionManager.getUsuario().getCellphone().trim());
+            cellphone.setHint(auth.getCellphone());
         }
 
         return view;

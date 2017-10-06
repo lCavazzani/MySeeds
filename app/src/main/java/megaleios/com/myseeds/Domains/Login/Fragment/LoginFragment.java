@@ -92,6 +92,7 @@ public class LoginFragment extends Fragment {
     @OnClick(R.id.open_register)
     public void openRegister() {
         Intent i = new Intent(getActivity(), RegisterActivity.class);
+        i.putExtra("Facebook", "false");
         startActivity(i);
 
     }
@@ -174,34 +175,74 @@ public class LoginFragment extends Fragment {
         startActivityForResult(scanIntent, 200);
     }
 
+
     void connectFacebook() {
         List<String> scopes = Arrays.asList("user_birthday", "user_friends");
 
         SimpleAuth.getInstance().connectFacebook(scopes, new AuthCallback() {
             @Override
-            public void onSuccess(SocialUser socialUser) {
-                final Auth auth = new Auth();
-                auth.setFullName(socialUser.fullName);
-                auth.setEmail(socialUser.email);
-                Log.d(TAG, "userId:" + socialUser.userId);
-                Log.d(TAG, "email:" + socialUser.email);
-                Log.d(TAG, "accessToken:" + socialUser.accessToken);
-                Log.d(TAG, "profilePictureUrl:" + socialUser.profilePictureUrl);
-                Log.d(TAG, "username:" + socialUser.username);
-                Log.d(TAG, "fullName:" + socialUser.fullName);
-                Log.d(TAG, "pageLink:" + socialUser.pageLink);
+            public void onSuccess(final SocialUser socialUser) {
+                RequestService.loginFace(getContext(), socialUser.userId, new RequestService.CallbackDefault() {
+                    @Override
+                    public void onSuccess(JsonObject result) {
+                        JsonObject object = result.getAsJsonObject("data");
 
-                Intent i = new Intent(getActivity(), RegisterActivity.class);
-                i.putExtra("Facebook", "true");
-                i.putExtra("name", socialUser.fullName.toString());
-                i.putExtra("email", socialUser.email.toString());
-                startActivity(i);
+                        final Auth auth = new Auth();
+                        auth.setAccessToken(object.get("access_token").getAsString());
+
+                        final SessionManager sessionManager = new SessionManager(getContext());
+                        sessionManager.createLoginSession(auth);
+
+                        RequestService.getInfo(getContext(), new RequestService.CallbackDefault() {
+                            @Override
+                            public void onSuccess(JsonObject result) {
+                                JsonObject object = result.getAsJsonObject("data");
+                                auth.setFullName(object.get("fullName").getAsString());
+                                auth.setDateBirth(object.get("dateBirth").getAsString());
+                                auth.setCpf(object.get("cpf").getAsString());
+                                auth.setEmail(object.get("email").getAsString());
+                                //   auth.setPhoto(object.get("photo").getAsString());
+                                auth.setCellphone(object.get("cellphone").getAsString());
+                                auth.setId(object.get("id").getAsString());
+
+                                SessionManager sessionManager = new SessionManager(getActivity());
+                                sessionManager.createLoginSession(auth);
+
+                                loading.dismiss();
+                                Intent i = new Intent(getActivity(), MainActivity.class);
+                                startActivity(i);
+                            }
+
+                            @Override
+                            public void onError() {
+                                loading.dismiss();
+                            }
+                        });
+
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        Intent i = new Intent(getActivity(), RegisterActivity.class);
+                        i.putExtra("Facebook", "true");
+                        i.putExtra("name", socialUser.fullName.toString());
+                        i.putExtra("email", socialUser.email.toString());
+                        i.putExtra("facebookid", socialUser.userId);
+                        startActivity(i);
+
+                        loading.dismiss();
+                    }
+                });
+
+
 
             }
 
 
             @Override
             public void onError(Throwable error) {
+
                 Log.d(TAG, error.getMessage());
             }
 

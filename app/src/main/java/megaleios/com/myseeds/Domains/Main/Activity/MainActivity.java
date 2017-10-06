@@ -1,5 +1,6 @@
 package megaleios.com.myseeds.Domains.Main.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,16 +11,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import megaleios.com.myseeds.Adapters.FragmentAdapter;
+import megaleios.com.myseeds.Domains.Login.Activity.LoginActivity;
 import megaleios.com.myseeds.Domains.Main.Fragment.AccountFragment;
 import megaleios.com.myseeds.Domains.Main.Fragment.ExplorerFragment;
 import megaleios.com.myseeds.Domains.Main.Fragment.HistoryFragment;
 import megaleios.com.myseeds.Domains.Main.Fragment.NotificationFragment;
 import megaleios.com.myseeds.Helpers.BottomNavigationViewHelper;
 import megaleios.com.myseeds.R;
+import megaleios.com.myseeds.Util.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
+    private SessionManager sessionManager;
 
 
     @Override
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        sessionManager = new SessionManager(this);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.requestFocus();
@@ -67,11 +72,18 @@ public class MainActivity extends AppCompatActivity {
 //                        break;
                     case R.id.action_account:
                         Log.i("BottomNav", "acc");
-                        viewPager.setCurrentItem(1);
-                        final Menu bottomMenu4 = bottomNavigationView.getMenu();
-                        final MenuItem targetMenuItem4 = bottomMenu4.getItem(1);
-                        targetMenuItem4.setChecked(true);
-                        break;
+                        if (sessionManager.checkLogin()) {
+                            viewPager.setCurrentItem(1);
+                            final Menu bottomMenu4 = bottomNavigationView.getMenu();
+                            final MenuItem targetMenuItem4 = bottomMenu4.getItem(1);
+                            targetMenuItem4.setChecked(true);
+                            break;
+                        }else{
+                            Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(i);
+                        }
+
+
 //                    case R.id.action_search:
 //                        Log.i("BottomNav", "Search");
 //                        break;

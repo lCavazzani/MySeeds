@@ -36,15 +36,27 @@ public class RequestService {
         Log.i("Access <" + innerIndex + ">", token);
         Log.i("DADOS <" + innerIndex + ">", dados.toString());
 
+        if(token.equals("")){
+            FutureCallback<Response<JsonObject>> message = getResponseFutureCallback(futureCallback, innerIndex);
+            Ion.with(context)
+                    .load(metodo, URL)
+//                    .addHeader("Authorization", "bearer "+token)
+                    .setJsonObjectBody(dados)
+                    .asJsonObject()
+                    .withResponse()
+                    .setCallback(message);
+        }
+        else{
+            FutureCallback<Response<JsonObject>> message = getResponseFutureCallback(futureCallback, innerIndex);
+            Ion.with(context)
+                    .load(metodo, URL)
+                    .addHeader("Authorization", "bearer "+token)
+                    .setJsonObjectBody(dados)
+                    .asJsonObject()
+                    .withResponse()
+                    .setCallback(message);
+        }
 
-        FutureCallback<Response<JsonObject>> message = getResponseFutureCallback(futureCallback, innerIndex);
-        Ion.with(context)
-                .load(metodo, URL)
-                .addHeader("Authorization", "bearer "+token)
-                .setJsonObjectBody(dados)
-                .asJsonObject()
-                .withResponse()
-                .setCallback(message);
     }
 
     @NonNull
@@ -255,8 +267,8 @@ public class RequestService {
                         if (e == null) {
                             JsonObject json = new Gson().fromJson(result, JsonObject.class);
                             Log.e("json", json.toString());
-                            if (json.get("Erro").getAsBoolean()) {
-                                //Core.getDialog(context, json.get("Message").toString()).show();
+                            if (json.get("erro").getAsBoolean()) {
+                                Core.getDialog(context, json.get("message").toString()).show();
                                 callback.onError();
                             } else {
                                 callback.onSuccess(json);
@@ -315,9 +327,6 @@ public class RequestService {
         void onError();
     }
 
-
-
-
     public interface CallbackError {
         void onSuccess(JsonObject result);
 
@@ -331,7 +340,7 @@ public class RequestService {
 //    }
 
     public static void getFeed(final Context context, String typeFilter, int page, final CallbackDefault callback) {
-        getJson(context, Config.URL_PATH + "api/v1/Instituion/ExplorerFilter/0/1", new FutureCallback<JsonObject>() {
+        getJson(context, Config.URL_PATH + "api/v1/Instituion/ExplorerFilter/1/1", new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
                 //Log.e("result", result.toString());

@@ -78,7 +78,7 @@ public class ExplorerFragment extends Fragment{
                 = new GridLayoutManager (getContext(),1,GridLayoutManager.HORIZONTAL,false);
         mCampanhas= (SmoothRecyclerView)view.findViewById(R.id.campanhas_list);
         mCampanhas.setLayoutManager(linearLayoutManager);
-        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(1), true));
+        mCampanhas.addItemDecoration(new GridSpacingItemDecoration(12, dpToPx(8), true));
         mCampanhas.setItemAnimator(new DefaultItemAnimator());
         SnapHelper helper = new LinearSnapHelper();
         helper.attachToRecyclerView(mCampanhas);
@@ -105,7 +105,10 @@ public class ExplorerFragment extends Fragment{
         );
         mCampanhas.addOnItemTouchListener( new RecyclerItemClickListener(getContext(), mCampanhas ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
+                        TextView id = (TextView) view.findViewById(R.id.institutionID);
+                        String institutionID = id.getText().toString();
                         Intent i = new Intent(getActivity(), InstituicaoActivity.class);
+                        i.putExtra("id", institutionID);
                         startActivity(i);
                     }
                     @Override public void onLongItemClick(View view, int position) {
@@ -113,7 +116,6 @@ public class ExplorerFragment extends Fragment{
                     }
                 })
         );
-
 //        card2.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -124,23 +126,10 @@ public class ExplorerFragment extends Fragment{
         getFeedNew(sessionManager);
         return view;
     }
-
-
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-//
-   private void updateDisplay(JsonArray jsonData) throws JSONException, IOException {
-//        JSONObject rootObj = new JSONObject(jsonData);
-
-//        rootArray = rootObj.getJSONArray("value");
-
-        adapter = new CampanhasAdapter(getActivity(), dataCampaing, ExplorerFragment.this);
-        mCampanhas.setAdapter(adapter);
-       adapter.notifyDataSetChanged();
-    }
-
     private void updateDisplayNew(String jsonData) throws JSONException, IOException {
 
         Log.i("Azu1",jsonData);
@@ -154,7 +143,7 @@ public class ExplorerFragment extends Fragment{
 
 //        rootArray = rootObj.getJSONArray("value");
 //
-          adapterNew = new NewCampaignAdapter(getContext(), campaing);
+         adapterNew = new NewCampaignAdapter(getContext(), campaing);
          adapterInstitution = new NewInstitutionsAdapter(getContext(), institutions);
 
 //
@@ -169,7 +158,6 @@ public class ExplorerFragment extends Fragment{
             @Override
             public void onSuccess(JsonObject result) {
                 Gson googleJson = new Gson();
-                //                    JSONObject jsonObj = new JSONObject(result.toString());
                 final String jsonData = result.toString();
                 getActivity().runOnUiThread(new Runnable() {
 
@@ -183,15 +171,12 @@ public class ExplorerFragment extends Fragment{
                         }
                     }
                 });
-
             }
 
             @Override
             public void onError() {
-
             }
         });
-
     }
 
 

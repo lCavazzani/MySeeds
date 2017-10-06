@@ -2,16 +2,70 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Termos de uso"
-        android:layout_margin="16dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod arcu id convallis luctus. Pellentesque et luctus nulla. Fusce aliquet porta ultrices. Praesent nec faucibus odio, nec vestibulum quam. Aliquam ac dignissim metus. Donec fermentum, enim vel cursus vulputate, dolor sapien tristique arcu, sit amet eleifend massa neque sit amet dolor. Pellentesque faucibus libero sit amet leo tempus faucibus. Suspendisse ac luctus ex"
-        android:layout_margin="16dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Termos de uso"
+                android:layout_margin="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estes são os termos que determinarão nossa relação.
+Última atualização: Setembro de 2017
+Antes de utilizar a MySeeds, é importante que você leia, entenda e concorde com estes termos.
+Você está prestes a fazer o uso do aplicativo da MySeeds, que é operado pela MYSEEDS TECNOLOGIA E INOVACAO LTDA - EPP, pessoa jurídica de direito privado, inscrita no CNPJ/MF sob nº. 27.562.759/0001-14 (“MySeeds”). Estes Termos de Uso regulam a utilização do aplicativo (“aplicativo”) e dos serviços disponibilizados (“Serviços”), nos termos da Lei 12.965/2014 (Marco Civil da Internet) e do Decreto 8.771/2016.  Ao clicar no botão “Eu li e aceito os Termos de Uso” você concorda e expressa sua vontade livre, consciente e informada de cumprir com e ser regido por estes Termos de Uso.
+A MySeeds pode alterar os Termos de Uso a qualquer momento, mas você sempre será notificado antes de eles entrarem em vigor e um novo consentimento será solicitado para que você continue tendo acesso à MySeeds e aos nossos Serviços.
+
+A MySeeds é uma empresa que te permite contribuir para as mais variadas instituições sem fins lucrativos de uma maneira prática e segura. Através das campanhas, o doador consegue escolher rapidamente o destino de sua contribuição, que é realizada forma pública ou anônima. Tanto os doadores, quanto os administradores das instituições possuem o constante acesso às contribuições já realizadas e aos recibos emitidos em cada operação, aumentando assim, o controle financeiro.
+
+Ao utilizar o aplicativo, mesmo que como teste, você estará vinculado a estes Termos, concordando com o que está escrito e principalmente consentindo com o acesso, coleta, uso, armazenamento, tratamento e técnicas de proteção às suas informações para a integral execução das funcionalidades ofertadas pelo aplicativo.
+O Uso dos Nossos Serviços
+Ao utilizar o aplicativo, você reconhece, assume e confirma que todos os dados e informações inseridos e informados à MySeeds são verdadeiros, e que tem pelo menos 18 anos de idade, bem como que tem poderes para representar a sua empresa, se for o caso. Se você for menor de idade, você não tem o direito de utilizar estes Serviços. Além disso, você declara que não irá:
+•	Participar de qualquer atividade relacionada ao aplicativo que seja ilegal, danosa, ofensiva, obscena, violenta, ameaçadora, coercitiva, abusiva ou de qualquer forma questionável pela MySeeds;
+•	Praticar engenharia reversa;
+•	Interferir na operação do Serviço ou adulterar quaisquer medidas de segurança que tenhamos instalado;
+•	Violar nossa Propriedade Intelectual ou a de outras pessoas;
+•	Violar de qualquer forma estes Termos de Uso.
+É sempre bom lembrar que esta lista de proibições é apenas exemplificativa, não exaustiva, devendo o usuário sempre respeitar as leis aplicáveis, bem como respeitar a propriedade intelectual da MySeeds.
+Utilização do Serviço e Segurança. Para utilizar nossos Serviços, você precisa criar uma conta na MySeeds. Para protegê-la, mantenha a sua senha em sigilo. A atividade realizada na conta da MySeeds é de responsabilidade do usuário. Caso tome conhecimento de uso não autorizado da sua senha ou da conta da MySeeds, entre em contato com o nosso suporte pelo e-mail [contato@myseeds.com].
+Disponibilidade e Término dos Serviços. Idealmente nossos Serviços sempre estarão à sua disposição, mas nos resguardamos o direito de suspender ou indisponibilizar os Serviços, total ou parcialmente, para um usuário específico ou todos ao mesmo tempo, a qualquer tempo e por qualquer motivo. Além disso, nos resguardamos o direito de excluir imediatamente a sua conta caso você viole estes Termos.
+Conexão com a Internet e Aparelhos. Quando você faz uso dos nossos Serviços, concorda que a MySeeds pode alterar ou modificar as configurações do aparelho no qual o aplicativo será utilizado para viabilizar ou otimizar a prestação dos Serviços. Você concorda que podemos coletar informações relacionadas ao aplicativo deste aparelho.
+Propriedade Intelectual
+Nossa Licença de Uso para você. A MySeeds te concede uma licença pessoal, mundial, não exclusiva, intransferível e isenta de royalties para o uso do software fornecido pela MySeeds como parte dos Serviços. Essa licença tem como único objetivo permitir que você visualize, utilize e interaja com nossos Serviços no seu computador, tablet, celular ou smartphone da melhor forma possível.
+Sua Licença de Uso para a MySeeds. Quando você faz upload ou de algum modo envia conteúdo a nossos Serviços, você concede à MySeeds (e àqueles com quem trabalhamos) uma licença mundial para usar, hospedar, armazenar, reproduzir, modificar, criar obras derivadas, comunicar, publicar, executar e distribuir tal conteúdo, resguardadas as disposições acerca de confidencialidade presentes em nossa Política de Privacidade e em quaisquer contratos entre nós. Os direitos que você concede nesta licença são para os fins restritos de operação, promoção e melhoria de nossos Serviços e de desenvolver novos serviços. Essa licença perdura mesmo que você deixe de usar nossos Serviços. Certifique-se de que você tem os direitos necessários para nos conceder a licença de qualquer conteúdo que você enviar a nossos Serviços.
+Nossa Propriedade Intelectual. Você não poderá copiar, modificar, distribuir, vender ou alugar qualquer parte de nossos Serviços ou o software incluso, nem poderá fazer engenharia reversa ou tentar extrair o código fonte desse software, exceto nos casos em que a legislação proibir tais restrições, ou quando você tiver nossa permissão por escrito. O uso de nossos Serviços não transfere nossos direitos de propriedade intelectual para você. Isso significa que você não pode usar conteúdos dos nossos Serviços a menos que obtenha autorização do proprietário para isso. Você não pode usar nossas marcas ou logotipos, nem remover, ocultar ou alterar quaisquer avisos legais exibidos nos nossos Serviços.
+E-mail-Marketing. A MySeeds tem anúncios de serviços, mensagens administrativas e outras informações para te enviar, mas precisa da sua autorização expressa para fazer isso. Por isso, ao realizar o seu cadastro, você pode (ou não) concordar com o envio de e-mail-marketing. Se você não tiver interesse neste tipo de conteúdo, basta não clicar na caixinha e não te importunaremos com isso.
+Notificações. Nossos Serviços podem te enviar notificações, se você assim autorizar. Estas notificações incluem pop-ups e mensagens.
+Restrição aos direitos. Qualquer direito que não esteja expressamente concedido a você, está reservado à MySeeds, seus licenciados e terceiros. Nenhum outro direito ou licença deverá ser inferido, deduzido ou alegado. Qualquer forma de utilização destes Serviços que não tenha sido autorizada está proibida.
+Atendimento ao Usuário
+Se você tiver qualquer pergunta, pode nos enviar um e-mail para [contato@myseeds.com.br]. Quando você se comunica conosco por e-mail, está concordando em receber uma mensagem de volta. Parece óbvio, mas é porque não devemos te enviar e-mails a menos que você concorde com isso.
+Sua Privacidade
+Política de Privacidade. A Política de Privacidade da MySeeds explica o modo como tratamos dados pessoais e protegemos sua privacidade. Para utilizar nossos Serviços, também é necessário ler e concordar com ela.
+Responsabilidade
+Isenção de Responsabilidade e Garantias.  Nossos serviços são prestados como estão, sujeitos a falhas e defeitos. Nem a MySeeds, nem seus sócios, administradores, operadores, empregados, agentes e prepostos assumem qualquer responsabilidade, ou se comprometem com qualquer garantia que seja, em relação aos Serviços, seja de forma expressa ou implícita.
+Remuneração e forma de pagamento
+Os valores doados em cada transação serão encaminhados, via sistema de arranjo de pagamento próprio, diretamente para a instituição, sendo já deduzidas do valor total de cada transação as taxas inerentes à prestação do serviço pela MySeeds, estas previamente acordadas entre a instituição e a MySeeds.
+Dependendo da instituição para a qual você efetuar uma doação, e sujeito às regras legais aplicáveis, a MySeeds poderá disponibilizar os respectivos comprovantes e documentos para fins de dedução de Imposto de Renda.
+Política de cancelamento
+O usuário reconhece que as doações não estão associadas a transações comerciais e/ou a qualquer contrapartida. As doações poderão ser canceladas e estornadas ao usuário, desde que tal solicitação seja feita dentro do prazo de 7 (sete) dias contados da data da conclusão da operação, mediante contato, por e-mail, com a instituição beneficiária da doação.
+Termos Gerais
+Direitos de Terceiros. Estes Termos regem a relação entre a MySeeds e você. Sendo assim, a MySeeds não se responsabiliza por nenhum conteúdo disponibilizado por terceiros.
+Ausência de Renúncia. Caso você não cumpra estes termos e nós não tomemos providências imediatas, isso não significa que estamos renunciando a quaisquer direitos que possamos ter (como tomar providências futuras).
+Integridade do Contrato. Caso alguma cláusula destes Termos seja considerada judicialmente inválida, isso não prejudicará a validade e a aplicação regular de quaisquer outras cláusulas, que continuarão vinculando você e a MySeeds.
+Resolução de Conflitos e Foro. Queremos ter a melhor relação jurídica possível com você e sempre tentaremos resolver nossos conflitos de maneira amigável. Se isso não for possível, estes Termos serão regidos pelas leis brasileiras, ficando eleito o Foro da Comarca de São Paulo, Estado de São Paulo, com expressa renúncia de qualquer outro, por mais privilegiado que seja.
+"
+                android:layout_margin="16dp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

@@ -51,7 +51,8 @@ public class RegisterFragment extends Fragment {
     public MaterialDialog loading;
     private Auth auth;
 
-    String facebook;
+    String facebook = "false";
+    String facebookid = "";
     private TextWatcher maskPhone, maskCpf, maskBirthday;
     public RegisterFragment() {
         // Required empty public constructor
@@ -66,9 +67,10 @@ public class RegisterFragment extends Fragment {
         loading = Core.getLoading(getContext());
 
         Intent i = getActivity().getIntent();
-
          facebook = i.getStringExtra("Facebook");
-        auth = new Auth();
+        facebookid = i.getStringExtra("facebookid");
+
+        auth = Auth.getInstance();
         if(facebook.equals("true")){
             inputName.setText(i.getStringExtra("name"));
             inputEmail.setText(i.getStringExtra("email"));
@@ -167,7 +169,7 @@ public class RegisterFragment extends Fragment {
             profileUser.setCpf(inputCpf.getText().toString());
             profileUser.setLogin(inputLogin.getText().toString());
             profileUser.setDateBirth(inputBirthday.getText().toString());
-
+            profileUser.setFacebookId(facebookid);
 
             RequestService.sign(getContext(), profileUser, new RequestService.CallbackDefault() {
                 @Override
@@ -186,7 +188,6 @@ public class RegisterFragment extends Fragment {
                             JsonObject object = result.getAsJsonObject("data");
                             auth.setFullName(object.get("fullName").getAsString());
                             auth.setDateBirth(object.get("dateBirth").getAsString());
-                            auth.setCpf(object.get("cpf").getAsString());
                             auth.setEmail(object.get("email").getAsString());
                          //   auth.setPhoto(object.get("photo").getAsString());
                             auth.setCellphone(object.get("cellphone").getAsString());

@@ -11,9 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import megaleios.com.myseeds.R;
 
@@ -54,8 +59,14 @@ public class NewCampaignAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             String price = mpackid.optString("price");
             myHolder.textmy.setText(murl);
             myHolder.textView.setText("R$ "+ totalDonation+" de "+price);
-            myHolder.date_end.setText(mpackid.optString("endCampaign"));
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
+            Date data = new Date(Long.parseLong(mpackid.optString("endCampaign")) * 1000L);
+            myHolder.date_end.setText(format.format(data).toString());
             myHolder.textView2.setText(mpackid.getJSONObject("company").getString("name"));
+            Glide.with(mContext).load(mpackid.getJSONObject("company").optString("logo")).into(myHolder.imageView10);
+            myHolder.institutionID.setText(mpackid.getString("institutionId"));
+
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -82,6 +93,8 @@ public class NewCampaignAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         TextView textView;
         TextView date_end;
         TextView textView2;
+        ImageView imageView10;
+        TextView institutionID;
 
         // create constructor to get widget reference
         public MyHolder(View itemView) {
@@ -90,6 +103,8 @@ public class NewCampaignAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             textView = (TextView) itemView.findViewById(R.id.textView);
             date_end = (TextView) itemView.findViewById(R.id.date_end);
             textView2 = (TextView) itemView.findViewById(R.id.textView2);
+            imageView10 = (ImageView) itemView.findViewById(R.id.imageView10);
+            institutionID = (TextView) itemView.findViewById(R.id.institutionID);
 
         }
 

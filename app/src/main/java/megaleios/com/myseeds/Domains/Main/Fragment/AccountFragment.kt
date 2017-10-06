@@ -8,14 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import megaleios.com.myseeds.Domains.ChangePassword.Activity.ChangePasswordActivity
 import megaleios.com.myseeds.Domains.Help.Activity.HelpActivity
 import megaleios.com.myseeds.Domains.Instituicao.Activity.InstituicaoActivity
+import megaleios.com.myseeds.Domains.Main.Activity.MainActivity
 import megaleios.com.myseeds.Domains.MyCards.Activity.MyCardsActivity
 import megaleios.com.myseeds.Domains.Profile.ProfileActivity.ProfileActivity
 import megaleios.com.myseeds.Domains.Terms.Activity.TermsActivity
+import megaleios.com.myseeds.Models.Auth
 
 import megaleios.com.myseeds.R
+import megaleios.com.myseeds.Util.SessionManager
 
 /**
  * Created by ulyssesboumann on 16/08/17.
@@ -27,6 +31,11 @@ class AccountFragment : Fragment() {
     private lateinit var card_help: CardView
     private lateinit var card_terms: CardView
     private lateinit var card_my_cards: CardView
+    private lateinit var card_exit: CardView
+    private var sessionManager: SessionManager? = null
+
+    private lateinit var textView6: TextView
+    private lateinit var user_email: TextView
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
@@ -36,7 +45,18 @@ class AccountFragment : Fragment() {
         card_help = view.findViewById(R.id.card_help) as CardView
         card_terms = view.findViewById(R.id.card_terms) as CardView
         card_my_cards = view.findViewById(R.id.card_my_cards) as CardView
+        card_exit = view.findViewById(R.id.card_exit) as CardView
 
+        textView6 = view.findViewById(R.id.textView6) as TextView
+        user_email = view.findViewById(R.id.user_email) as TextView
+
+        sessionManager = SessionManager(context)
+//        if(sessionManager!!.getUsuario().getFacebookid().equals("")){
+//            card_change_password.visibility = View.GONE;
+//
+//        }
+        textView6.setText(sessionManager!!.getUsuario().getFullName())
+        user_email.setText(sessionManager!!.getUsuario().getEmail())
         profileCard.setOnClickListener {
             // Handler code here.
             val i = Intent(activity, ProfileActivity::class.java)
@@ -60,6 +80,13 @@ class AccountFragment : Fragment() {
         card_my_cards.setOnClickListener {
             // Handler code here.
             val i = Intent(activity, MyCardsActivity::class.java)
+            startActivity(i)
+        }
+        card_exit.setOnClickListener {
+            // Handler code here.
+            var sessionManager = SessionManager(context)
+            sessionManager.logoutUser();
+            val i = Intent(activity, MainActivity::class.java)
             startActivity(i)
         }
 

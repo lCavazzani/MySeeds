@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import megaleios.com.myseeds.Domains.Login.Activity.LoginActivity;
+import megaleios.com.myseeds.Domains.Main.Activity.MainActivity;
 import megaleios.com.myseeds.R;
 
 /**
@@ -24,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent i = null;
-                i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                i = new Intent(SplashScreenActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }

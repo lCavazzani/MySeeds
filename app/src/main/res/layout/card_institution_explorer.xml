@@ -33,24 +33,32 @@
     android:layout_height="1dp"
     android:text=""
     android:id="@+id/institutionID"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="16dp"
+                android:id="@+id/imageView2"/>
             <TextView
                 android:id="@+id/textmy_int"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-light"
                 android:text="Hilsong"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:layout_marginTop="4dp"
+                android:layout_alignTop="@+id/imageView2"
+                android:layout_toRightOf="@+id/imageView2"
+                android:layout_toEndOf="@+id/imageView2" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/divider_title1"
                 android:layout_alignTop="@+id/textmy_int"
-                android:src="@drawable/fav" />
+                android:src="@drawable/fav" 
+                android:visibility="gone"/>
 
             <View
                 android:id="@+id/divider_title1"

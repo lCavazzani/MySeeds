@@ -15,8 +15,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import megaleios.com.myseeds.Domains.Instituicao.Activity.InstituicaoActivity;
+import megaleios.com.myseeds.Domains.Instituicao.Fragment.InstituicaoFragment;
 import megaleios.com.myseeds.Models.ValueDonationCampaign;
 import megaleios.com.myseeds.R;
 
@@ -28,13 +31,16 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     private Context mContext;
     JSONArray mPages;
+    InstituicaoFragment fragment;
 
 
 
 
-    public OpenInstitutionAdapter(Context context, JSONArray pages){
+    public OpenInstitutionAdapter(Context context, JSONArray pages, InstituicaoFragment fragment){
         mContext = context;
         mPages = pages;
+        this.fragment = fragment;
+
     }
 
     @Override
@@ -56,8 +62,10 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             String price = mpackid.optString("price");
             myHolder.textmy.setText(murl);
             myHolder.textView.setText("R$ "+ totalDonation+" de "+price);
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
             Date data = new Date(Long.parseLong(mpackid.optString("endCampaign")) * 1000L);
-            myHolder.date_end.setText(data.toString());
+            myHolder.date_end.setText(format.format(data).toString());
+            myHolder.campaign_id.setText(mpackid.optString("id"));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -84,6 +92,7 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView textView;
         TextView date_end;
         EditText button;
+        TextView campaign_id;
 
         // create constructor to get widget reference
         public MyHolder(View itemView) {
@@ -92,6 +101,8 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             textView = (TextView) itemView.findViewById(R.id.textView);
             date_end = (TextView) itemView.findViewById(R.id.date_end);
             button = (EditText) itemView.findViewById(R.id.button);
+            campaign_id = (TextView) itemView.findViewById(R.id.campaign_id);
+
 
             button.setRawInputType(Configuration.KEYBOARD_12KEY);
 
@@ -99,9 +110,9 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
 
-                        int final_int = Integer.parseInt(v.getText().toString());
                         ValueDonationCampaign user = ValueDonationCampaign.getInstance();
                         user.setCampanha1(v.getText().toString());
+                        fragment.addvalueCampaign(v.getText().toString());
                     }
                     return false;
                 }
@@ -116,9 +127,9 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 //                        int final_int = Integer.parseInt(button_contribuir.getText().toString())- Integer.parseInt(sum_number);
 //                    }
                         button.setText("");
-                        button.setHint("0,00");
+                        button.setHint("R$ 0,00");
                         button.setVisibility(View.VISIBLE);
-                        button.setVisibility(View.VISIBLE);
+                        fragment.showBottom();
                     } else {
                     }
                 }

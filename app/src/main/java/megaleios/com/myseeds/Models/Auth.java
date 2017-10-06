@@ -12,6 +12,7 @@ import java.io.Serializable;
  */
 
 public class Auth implements Serializable {
+    private static final Auth auth = new Auth();
 
     @SerializedName("access_token")
     public String accessToken;
@@ -25,6 +26,17 @@ public class Auth implements Serializable {
     public String photo;
     @SerializedName("dateBirth")
     public String dateBirth;
+
+    public String getFacebookid() {
+        return facebookid;
+    }
+
+    public void setFacebookid(String facebookid) {
+        this.facebookid = facebookid;
+    }
+
+    @SerializedName("facebookid")
+    public String facebookid;
 
     public String getFullName() {
         return fullName;
@@ -95,4 +107,9 @@ public class Auth implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+    public static Auth getInstance() {
+        return auth;
+    }
+
 }

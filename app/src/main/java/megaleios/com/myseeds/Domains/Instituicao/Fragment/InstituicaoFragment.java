@@ -31,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -53,6 +54,7 @@ import megaleios.com.myseeds.Adapters.NewInstitutionsAdapter;
 import megaleios.com.myseeds.Adapters.OpenInstitutionAdapter;
 import megaleios.com.myseeds.Components.SmoothRecyclerView;
 import megaleios.com.myseeds.Domains.Instituicao.Activity.InstituicaoActivity;
+import megaleios.com.myseeds.Domains.Login.Activity.LoginActivity;
 import megaleios.com.myseeds.Domains.Main.Activity.MainActivity;
 import megaleios.com.myseeds.Domains.PaymentConfirm.Activity.PaymentConfirmActivity;
 import megaleios.com.myseeds.Domains.PaymentWebView.PaymentWebViewActivity;
@@ -62,6 +64,7 @@ import megaleios.com.myseeds.Models.Campaing;
 import megaleios.com.myseeds.Models.Institution;
 import megaleios.com.myseeds.Models.ValueDonationCampaign;
 import megaleios.com.myseeds.R;
+import megaleios.com.myseeds.Service.Core;
 import megaleios.com.myseeds.Service.RequestService;
 import megaleios.com.myseeds.Util.CustomMaskUtil;
 import megaleios.com.myseeds.Util.MaskType;
@@ -83,17 +86,23 @@ public class InstituicaoFragment extends Fragment{
     TextView number_campaign;
     TextView address;
     TextView limit;
+    TextView total_value;
     private SmoothRecyclerView mCampanhas;
     private OpenInstitutionAdapter adapter;
     ArrayList<String> list = new ArrayList<String>();
     int lenghtDonatation;
+    LinearLayout finish_contribuir;
+    GridLayoutManager linearLayoutManager;
+    LinearLayout add_more;
     Auth auth;
-
+    CheckBox check_terms;
+    public MaterialDialog loading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_instituicao, container, false);
+        loading = Core.getLoading(getContext());
 
         Intent intent = getActivity().getIntent();
         mID = intent.getStringExtra("id");
@@ -105,18 +114,19 @@ public class InstituicaoFragment extends Fragment{
         limit = (TextView) view.findViewById(R.id.limit);
 
 
+        sessi  onManager = new SessionManager(getContext());
 
         final EditText button_contribuir = (EditText) view.findViewById(R.id.button_contribuir);
-        final LinearLayout finish_contribuir = (LinearLayout) view.findViewById(R.id.finish_contribuir);
-        final LinearLayout add_more = (LinearLayout) view.findViewById(R.id.add_more);
-        final TextView total_value = (TextView) view.findViewById(R.id.total_value);
+        finish_contribuir = (LinearLayout) view.findViewById(R.id.finish_contribuir);
+        add_more = (LinearLayout) view.findViewById(R.id.add_more);
+        total_value = (TextView) view.findViewById(R.id.total_value);
         final TextView more_money_one = (TextView) view.findViewById(R.id.more_money_one);
         final TextView more_money_two = (TextView) view.findViewById(R.id.more_money_two);
         final TextView more_money_three = (TextView) view.findViewById(R.id.more_money_three);
         final Button button2 = (Button) view.findViewById(R.id.button2);
         final ScrollView scrollview = (ScrollView) view.findViewById(R.id.scrollview);
         int total_carrinho = 0;
-        CheckBox check_terms = (CheckBox) view.findViewById(R.id.check_terms);
+        check_terms = (CheckBox) view.findViewById(R.id.check_terms);
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
@@ -127,8 +137,11 @@ public class InstituicaoFragment extends Fragment{
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     String sum_value = total_value.getText().toString();
                     String sum_number  = sum_value.replaceAll("[^0-9]", "");
-                    int final_int = Integer.parseInt(v.getText().toString())+ Integer.parseInt(sum_number);
-                    total_value.setText(String.valueOf(final_int));
+                    int final_int = 0;
+                    if(!v.getText().toString().equals("")){
+                        final_int = Integer.parseInt(v.getText().toString())+ Integer.parseInt(sum_number);
+                    }
+                    total_value.setText("Total R$ "+String.valueOf(final_int));
                 }
                 return false;
             }
@@ -143,7 +156,7 @@ public class InstituicaoFragment extends Fragment{
 //                        int final_int = Integer.parseInt(button_contribuir.getText().toString())- Integer.parseInt(sum_number);
 //                    }
                     button_contribuir.setText("");
-                    button_contribuir.setHint("0,00");
+                    button_contribuir.setHint("R$ 0,00");
                     finish_contribuir.setVisibility(View.VISIBLE);
                     add_more.setVisibility(View.VISIBLE);
                 } else {
@@ -175,7 +188,18 @@ public class InstituicaoFragment extends Fragment{
                 String view_value = more_money_three.getText().toString();
                 String view_number  = view_value.replaceAll("[^0-9]", "");
                 int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
-                total_value.setText(String.valueOf(final_int));
+                total_value.setText("Total R$ "+String.valueOf(final_int));
+                String button_value = button_contribuir.getText().toString();
+                String button_total  = button_value.replaceAll("[^0-9]", "");
+                if(button_total.equals("")){
+                    int button_int = Integer.parseInt("0")+ Integer.parseInt(view_number);
+                    button_contribuir.setText(String.valueOf(button_int));
+
+                }else{
+                    int button_int = Integer.parseInt(button_total)+ Integer.parseInt(view_number);
+                    button_contribuir.setText(String.valueOf(button_int));
+
+                }
             }
         });
         more_money_two.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +210,18 @@ public class InstituicaoFragment extends Fragment{
                 String view_value = more_money_two.getText().toString();
                 String view_number  = view_value.replaceAll("[^0-9]", "");
                 int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
-                total_value.setText(String.valueOf(final_int));
+                total_value.setText("Total R$ "+String.valueOf(final_int));
+                String button_value = button_contribuir.getText().toString();
+                String button_total  = button_value.replaceAll("[^0-9]", "");
+                if(button_total.equals("")){
+                    int button_int = Integer.parseInt("0")+ Integer.parseInt(view_number);
+                    button_contribuir.setText(String.valueOf(button_int));
+
+                }else{
+                    int button_int = Integer.parseInt(button_total)+ Integer.parseInt(view_number);
+                    button_contribuir.setText(String.valueOf(button_int));
+
+                }
             }
         });
         more_money_one.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +232,18 @@ public class InstituicaoFragment extends Fragment{
                 String view_value = more_money_one.getText().toString();
                 String view_number  = view_value.replaceAll("[^0-9]", "");
                 int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
-                total_value.setText(String.valueOf(final_int));
+                total_value.setText("Total R$ "+String.valueOf(final_int));
+                String button_value = button_contribuir.getText().toString();
+                String button_total  = button_value.replaceAll("[^0-9]", "");
+                if(button_total.equals("")){
+                    int button_int = Integer.parseInt("0")+ Integer.parseInt(view_number);
+                    button_contribuir.setText(String.valueOf(button_int));
+
+                }else{
+                    int button_int = Integer.parseInt(button_total)+ Integer.parseInt(view_number);
+                    button_contribuir.setText(String.valueOf(button_int));
+
+                }
             }
         });
         check_terms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
@@ -215,55 +261,82 @@ public class InstituicaoFragment extends Fragment{
                     String sum_value = total_value.getText().toString();
                     String sum_number  = sum_value.replaceAll("[^0-9]", "");
                     int final_int = Integer.parseInt(sum_number)-2;
-                    total_value.setText(String.valueOf(final_int));
+                    total_value.setText("Total R$ "+String.valueOf(final_int));
                 }
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (sessionManager.checkLogin()) {
+                loading.show();
                 ValueDonationCampaign valor = ValueDonationCampaign.getInstance();
 //                Log.i("FIMPF", Integer.parseInt(valor.getCampanha1() + total_value.getText())+"x");
                 JSONObject obj = new JSONObject();
                 JSONArray array = new JSONArray();
-                SessionManager sessionManager = new SessionManager(getContext());
-                for(int i = 0; i < lenghtDonatation; i++){
+                int total_donatation = 0;
+                for (int i = 0; i < lenghtDonatation; i++) {
                     JSONObject objFromArray = new JSONObject();
                     try {
-                        objFromArray.put("campaignId", null);
-                        objFromArray.put("name", "");
-                        objFromArray.put("type", 0);
-                        objFromArray.put("donationValue", 10);
+                        SmoothRecyclerView.ViewHolder holder = mCampanhas.findViewHolderForAdapterPosition(i);
+                        EditText price = (EditText) holder.itemView.findViewById(R.id.button);
+                        String donatationString = price.getText().toString();
+                        int donatationValue = 0;
+
+                        if (!donatationString.equals(""))
+                            donatationValue = Integer.parseInt(donatationString);
+
+                        total_donatation = total_donatation + donatationValue;
+                        TextView donatationName = (TextView) holder.itemView.findViewById(R.id.textmy);
+                        TextView campaign_id = (TextView) holder.itemView.findViewById(R.id.campaign_id);
+                        objFromArray.put("campaignId", campaign_id.getText().toString());
+                        objFromArray.put("name", donatationName.getText().toString());
+                        objFromArray.put("type", 1);
+                        objFromArray.put("donationValue", donatationValue);
                         array.put(objFromArray);
                         obj.put("donatations", array);
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
+
                 try {
                     obj.put("profileId", sessionManager.getUsuario().getId());
                     obj.put("creditCardId", null);
-                    obj.put("isPaidFees", true);
+                    if (check_terms.isChecked()) {
+                        obj.put("isPaidFees", true);
+                    }else{
+                        obj.put("isPaidFees", false);
+                    }
                     obj.put("isRequestDonatation", true);
                     obj.put("amountFees", 0);
-                    obj.put("totalDonationAmout", 10);
+                    obj.put("totalDonationAmount", total_donatation);
                     obj.put("institutionId", "59c94b2f4d513d3da09b1b5b");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
                 JsonParser jsonParser = new JsonParser();
-                JsonObject gsonObject = (JsonObject)jsonParser.parse(obj.toString());
+                JsonObject gsonObject = (JsonObject) jsonParser.parse(obj.toString());
                 Log.i("JASON", gsonObject.toString());
                 RequestService.getDonation(getActivity(), gsonObject, new RequestService.CallbackDefault() {
                     @Override
                     public void onSuccess(JsonObject result) {
-                        Intent intent = new Intent(getActivity(), PaymentWebViewActivity.class);
-                        startActivity(intent);
+                        if (sessionManager.checkLogin()) {
+                            Intent intent = new Intent(getActivity(), PaymentWebViewActivity.class);
+                            startActivity(intent);
+                            loading.dismiss();
+                        } else {
+                            Intent intent = new Intent(getActivity(), PaymentWebViewActivity.class);
+                            startActivity(intent);
+                            loading.dismiss();
+
+                        }
+
                         //WEBVIEW
                         Log.e("string", "success");
                     }
+
                     @Override
                     public void onError() {
 
@@ -271,9 +344,12 @@ public class InstituicaoFragment extends Fragment{
                     }
                 });
 
-            }
+            }else{
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(i);                }
+        }
         });
-        GridLayoutManager linearLayoutManager
+        linearLayoutManager
                 = new GridLayoutManager (getContext(),1,GridLayoutManager.VERTICAL,false);
         mCampanhas= (SmoothRecyclerView)view.findViewById(R.id.campaign_list);
         mCampanhas.setLayoutManager(linearLayoutManager);
@@ -328,7 +404,7 @@ public class InstituicaoFragment extends Fragment{
         TextView lorem;
         TextView textView_int;
 
-        adapter = new OpenInstitutionAdapter(getContext(), campaing);
+        adapter = new OpenInstitutionAdapter(getContext(), campaing,InstituicaoFragment.this );
         lenghtDonatation = campaing.length();
 
          mCampanhas.setAdapter(adapter);
@@ -337,4 +413,23 @@ public class InstituicaoFragment extends Fragment{
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
+    public void addvalueCampaign(String valor){
+        finish_contribuir.setVisibility(View.VISIBLE);
+        add_more.setVisibility(View.VISIBLE);
+        String sum_value = total_value.getText().toString();
+        String sum_number  = sum_value.replaceAll("[^0-9]", "");
+        String view_number  = valor.replaceAll("[^0-9]", "");
+        if(view_number.equals("")||sum_number.equals("")){
+
+        }else{
+            int final_int = Integer.parseInt(view_number)+ Integer.parseInt(sum_number);
+            total_value.setText("Total R$ "+String.valueOf(final_int));
+        }
+    }
+    public void showBottom(){
+        finish_contribuir.setVisibility(View.VISIBLE);
+        add_more.setVisibility(View.VISIBLE);
+    }
+
 }

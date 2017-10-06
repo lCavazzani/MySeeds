@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/name_textview"
             android:layout_marginStart="16dp"
-            android:text="Leonardo Cavazzani"/>
+            android:text=""/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:id="@+id/login_textview"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Leonardo Cavazzani"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:id="@+id/email_textview"
-            android:text="Leonardo Cavazzani"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/cpf_textview"
             android:layout_marginStart="16dp"
-            android:text="Leonardo Cavazzani"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:id="@+id/birth_textview"
-            android:text="Leonardo Cavazzani" />
+            android:text="" />
     </LinearLayout>
 
     <LinearLayout
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:id="@+id/cellphone_textview"
-            android:text="Leonardo Cavazzani"/>
+            android:text=""/>
     </LinearLayout>
 
     <Button

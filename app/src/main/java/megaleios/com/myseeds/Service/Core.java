@@ -36,7 +36,7 @@ public class Core {
                 .title(R.string.app_name)
                 .autoDismiss(true)
                 .content(message)
-                .positiveText("string").build();
+                .positiveText("Ok").build();
 
     }
 
@@ -45,7 +45,7 @@ public class Core {
                 .title(R.string.app_name)
                 .autoDismiss(true)
                 .content(message)
-                .positiveText("string")
+                .positiveText("Ok")
                 .onPositive(callback)
                 .build();
 
@@ -78,7 +78,7 @@ public class Core {
     public static MaterialDialog getLoading(Context context) {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .title(R.string.app_name)
-                .content("string")
+                .content("Carregando...")
                 .cancelable(false)
                 .progress(true, 0);
 

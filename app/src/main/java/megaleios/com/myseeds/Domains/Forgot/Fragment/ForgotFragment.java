@@ -62,7 +62,7 @@ public class ForgotFragment extends Fragment {
             RequestService.forgotPassword(getContext(), inputEmail.getText().toString(), new RequestService.CallbackDefault() {
                 @Override
                 public void onSuccess(JsonObject result) {
-                    Core.getDialog(getContext(), result.get("message").toString()).show();
+                    Core.getDialog(getContext(), result.get("message").toString());
                     Log.e("reset", "sucesso" + result.toString());
                 }
 

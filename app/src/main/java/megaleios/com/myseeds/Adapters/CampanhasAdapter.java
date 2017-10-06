@@ -71,16 +71,13 @@ public class CampanhasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_explorer, parent, false);
             return new CampanhasAdapter.ViewHolder(view);
-
-
-
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final int itemType = getItemViewType(position);
 
-        feed = data.get(position);
+            feed = data.get(position);
             ViewHolder post = (ViewHolder) holder;
             post.feed = feed;
             post.profileName.setText(feed.getName());

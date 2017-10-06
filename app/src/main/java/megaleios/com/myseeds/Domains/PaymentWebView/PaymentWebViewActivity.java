@@ -40,7 +40,10 @@ public class PaymentWebViewActivity extends AppCompatActivity {
 
         WebView webView = (WebView) findViewById(R.id.webviewNews);
 
-//
+//vistaWeb.clearCache(true);
+        webView.clearHistory();
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 //        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + "Doação" + "</font>"));
 //        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
 
