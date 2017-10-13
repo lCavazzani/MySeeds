@@ -26,7 +26,19 @@ public class Auth implements Serializable {
     public String photo;
     @SerializedName("dateBirth")
     public String dateBirth;
+    @SerializedName("facebookid")
+    public String facebookid = "";
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @SerializedName("login")
+    public String login;
     public String getFacebookid() {
         return facebookid;
     }
@@ -34,9 +46,6 @@ public class Auth implements Serializable {
     public void setFacebookid(String facebookid) {
         this.facebookid = facebookid;
     }
-
-    @SerializedName("facebookid")
-    public String facebookid;
 
     public String getFullName() {
         return fullName;

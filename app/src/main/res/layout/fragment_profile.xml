@@ -22,9 +22,10 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:foregroundGravity="center_horizontal"
-                android:src="@drawable/farmer"/>
+                android:src="@drawable/farmer" />
 
             <TextView
+                android:id="@+id/edit_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"

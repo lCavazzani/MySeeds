@@ -21,6 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_margin="16dp"
+                android:id="@+id/imageView11" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,9 +34,12 @@
                 android:textStyle="normal"
                 android:textColor="#000000"
                 android:text="Hillsong"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:id="@+id/textView3" />
+                android:id="@+id/textView3"
+                android:layout_alignTop="@+id/imageView11"
+                android:layout_toRightOf="@+id/imageView11"
+                android:layout_toEndOf="@+id/imageView11"
+   />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,7 +47,9 @@
                 android:visibility="gone"
                 android:layout_alignTop="@+id/textView3"
                 android:layout_alignEnd="@+id/textView2_int" />
-            <TextView
+            <at.blogc.android.views.ExpandableTextView
+                android:id="@+id/lorem"
+                android:layout_margin="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -47,13 +57,21 @@
                 android:textStyle="normal"
                 android:textColor="#000000"
                 android:lineSpacingExtra="8sp"
-                android:text="Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec. Donec viverra eleifend lacus, vitae ullamcorper metus. Sed sollicitudin ipsum quis nunc sollicitudin ultrices. Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo."
                 android:layout_below="@+id/textView3"
                 android:layout_alignParentStart="true"
+                android:text="Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec. Donec viverra eleifend lacus, vitae ullamcorper metus. Sed sollicitudin ipsum quis nunc sollicitudin ultrices. Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo."
                 android:maxLines="3"
                 android:ellipsize="end"
-                android:layout_margin="16dp"
-                android:id="@+id/lorem"/>
+                app:animation_duration="1000"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ler mais"
+                android:id="@+id/read_more"
+                android:layout_above="@+id/textView_int"
+                android:layout_alignRight="@+id/imageView11"
+                android:layout_alignEnd="@+id/imageView11" />
             <TextView
                 android:id="@+id/textView_int"
                 android:layout_width="wrap_content"
@@ -116,6 +134,7 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textSize="14sp"
+                android:layout_marginBottom="16dp"
                 android:textStyle="normal"
                 android:entries="@array/parcelas"
                 android:layout_marginEnd="16dp"
@@ -131,7 +150,8 @@
                 android:src="@drawable/local"
                 android:layout_below="@+id/divider_title2"
                 android:layout_alignStart="@+id/button_contribuir"
-                android:id="@+id/imageView3" />
+                android:id="@+id/imageView3"
+                android:layout_marginStart="16dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -144,6 +164,7 @@
                 android:textColor="#8945d1"
                 android:imeOptions="actionDone"
                 android:maxLength="7"
+                android:visibility="gone"
                 android:background="@drawable/button_contribuir_purple"
                 android:textAlignment="center"
                 android:layout_marginTop="36dp"/>
@@ -208,6 +229,7 @@
                 android:layout_below="@+id/add_more"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
+                android:visibility="gone"
                 android:id="@+id/limit"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -217,7 +239,7 @@
                 android:textStyle="normal"
                 android:textColor="#000000"
                 android:text="Campanhas"
-                android:layout_below="@+id/limit"
+                android:layout_below="@+id/imageView3"
                 android:layout_margin="16dp"
                 android:id="@+id/campanha_title"
                 />
@@ -252,7 +274,8 @@
                 android:layout_alignTop="@+id/check_terms"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="78dp"/>
+                android:layout_marginBottom="78dp"
+                android:visibility="gone"/>
 
 
         </RelativeLayout>

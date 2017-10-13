@@ -46,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/fav"
                 android:layout_alignTop="@+id/textmy"
-                android:layout_alignEnd="@+id/button" />
+                android:layout_alignEnd="@+id/button"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/date_end"

@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager.requestFocus();
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragment(new ExplorerFragment(), "Explorar", false);
-       // adapter.addFragment(new NotificationFragment(), "Notificacoes", false);
-        //adapter.addFragment(new HistoryFragment(), "Historico", false);
+        adapter.addFragment(new NotificationFragment(), "Notificacoes", false);
+        adapter.addFragment(new HistoryFragment(), "Historico", false);
         adapter.addFragment(new AccountFragment(), "Conta", false);
         // viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
@@ -56,34 +56,32 @@ public class MainActivity extends AppCompatActivity {
                         final MenuItem targetMenuItem = bottomMenu.getItem(0);
                         targetMenuItem.setChecked(true);
                         break;
-//                    case R.id.action_notification:
-//                        Log.i("BottomNav", "not");
-//                        viewPager.setCurrentItem(1);
-//                        final Menu bottomMenu1 = bottomNavigationView.getMenu();
-//                        final MenuItem targetMenuItem1 = bottomMenu1.getItem(1);
-//                        targetMenuItem1.setChecked(true);
-//                        break;
-//                    case R.id.action_history:
-//                        Log.i("BottomNav", "hist");
-//                        viewPager.setCurrentItem(2);
-//                        final Menu bottomMenu2 = bottomNavigationView.getMenu();
-//                        final MenuItem targetMenuItem2 = bottomMenu2.getItem(2);
-//                        targetMenuItem2.setChecked(true);
-//                        break;
+                    case R.id.action_notification:
+                        Log.i("BottomNav", "not");
+                        viewPager.setCurrentItem(1);
+                        final Menu bottomMenu1 = bottomNavigationView.getMenu();
+                        final MenuItem targetMenuItem1 = bottomMenu1.getItem(1);
+                        targetMenuItem1.setChecked(true);
+                        break;
+                    case R.id.action_history:
+                        Log.i("BottomNav", "hist");
+                        viewPager.setCurrentItem(2);
+                        final Menu bottomMenu2 = bottomNavigationView.getMenu();
+                        final MenuItem targetMenuItem2 = bottomMenu2.getItem(2);
+                        targetMenuItem2.setChecked(true);
+                        break;
                     case R.id.action_account:
                         Log.i("BottomNav", "acc");
                         if (sessionManager.checkLogin()) {
-                            viewPager.setCurrentItem(1);
+                            viewPager.setCurrentItem(3);
                             final Menu bottomMenu4 = bottomNavigationView.getMenu();
-                            final MenuItem targetMenuItem4 = bottomMenu4.getItem(1);
+                            final MenuItem targetMenuItem4 = bottomMenu4.getItem(3);
                             targetMenuItem4.setChecked(true);
                             break;
                         }else{
                             Intent i = new Intent(MainActivity.this, LoginActivity.class);
                             startActivity(i);
                         }
-
-
 //                    case R.id.action_search:
 //                        Log.i("BottomNav", "Search");
 //                        break;

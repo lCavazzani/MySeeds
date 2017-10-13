@@ -1,6 +1,7 @@
 package megaleios.com.myseeds.Domains.EditProfile.Fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -15,6 +16,8 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.JsonObject;
 
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,6 +28,7 @@ import megaleios.com.myseeds.Models.ProfileUser;
 import megaleios.com.myseeds.R;
 import megaleios.com.myseeds.Service.Core;
 import megaleios.com.myseeds.Service.RequestService;
+import megaleios.com.myseeds.Util.ImageInputHelper;
 import megaleios.com.myseeds.Util.MaskUtil;
 import megaleios.com.myseeds.Util.SessionManager;
 
@@ -32,7 +36,7 @@ import megaleios.com.myseeds.Util.SessionManager;
  * Created by ulyssesboumann on 16/08/17.
  */
 
-public class EditProfileFragment extends Fragment {
+public class EditProfileFragment extends Fragment implements ImageInputHelper.ImageActionListener  {
     @BindView(R.id.input_name)
     TextInputEditText inputName;
     @BindView(R.id.input_email)
@@ -69,7 +73,7 @@ public class EditProfileFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         loading = Core.getLoading(getContext());
 
-        maskPhone = MaskUtil.insert("(##)#####-####", inputMobile);
+        maskPhone = MaskUtil.insert("(##) #####-####", inputMobile);
         inputMobile.addTextChangedListener(maskPhone);
 
         maskCpf = MaskUtil.insert("###.###.###-##", inputCpf);
@@ -94,13 +98,15 @@ public class EditProfileFragment extends Fragment {
         }
 
         if(sessionManager.getUsuario().getCpf() != null && !sessionManager.getUsuario().getCpf().isEmpty()) {
-            inputCpf.setHint(sessionManager.getUsuario().getCpf().trim());
+            inputCpf.setText(sessionManager.getUsuario().getCpf().trim());
         }
 
         if(sessionManager.getUsuario().getCellphone() != null && !sessionManager.getUsuario().getCellphone().isEmpty()) {
-            inputMobile.setHint(sessionManager.getUsuario().getCellphone().trim());
+            inputMobile.setText(sessionManager.getUsuario().getCellphone().trim());
         }
-
+        if (sessionManager.getUsuario().getLogin() != null && !sessionManager.getUsuario().getLogin().isEmpty()){
+            inputLogin.setText(sessionManager.getUsuario().getLogin());
+        }
 
         return view;
     }
@@ -214,4 +220,18 @@ public class EditProfileFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onImageSelectedFromGallery(Uri uri, File imageFile) {
+
+    }
+
+    @Override
+    public void onImageTakenFromCamera(Uri uri, File imageFile) {
+
+    }
+
+    @Override
+    public void onImageCropped(Uri uri, File imageFile) {
+
+    }
 }

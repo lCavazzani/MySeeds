@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,17 +22,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.OvershootInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -41,6 +45,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -48,6 +53,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import at.blogc.android.views.ExpandableTextView;
 import megaleios.com.myseeds.Adapters.CampanhasAdapter;
 import megaleios.com.myseeds.Adapters.NewCampaignAdapter;
 import megaleios.com.myseeds.Adapters.NewInstitutionsAdapter;
@@ -81,12 +87,14 @@ public class InstituicaoFragment extends Fragment{
     private SessionManager sessionManager;
     String mID;
     TextView textView3;
-    TextView lorem;
+    ExpandableTextView lorem;
     TextView textView_int;
     TextView number_campaign;
     TextView address;
     TextView limit;
     TextView total_value;
+    ImageView logo_institution;
+    TextView read_more;
     private SmoothRecyclerView mCampanhas;
     private OpenInstitutionAdapter adapter;
     ArrayList<String> list = new ArrayList<String>();
@@ -107,14 +115,14 @@ public class InstituicaoFragment extends Fragment{
         Intent intent = getActivity().getIntent();
         mID = intent.getStringExtra("id");
         textView3 = (TextView) view.findViewById(R.id.textView3);
-        lorem = (TextView) view.findViewById(R.id.lorem);
+        lorem = (ExpandableTextView) view.findViewById(R.id.lorem);
         textView_int = (TextView) view.findViewById(R.id.textView_int);
         number_campaign = (TextView) view.findViewById(R.id.number_campaign);
         address = (TextView) view.findViewById(R.id.adress);
         limit = (TextView) view.findViewById(R.id.limit);
-
-
-        sessi  onManager = new SessionManager(getContext());
+        logo_institution = (ImageView) view.findViewById(R.id.imageView11);
+        read_more = (TextView) view.findViewById(R.id.read_more);
+        sessionManager = new SessionManager(getContext());
 
         final EditText button_contribuir = (EditText) view.findViewById(R.id.button_contribuir);
         finish_contribuir = (LinearLayout) view.findViewById(R.id.finish_contribuir);
@@ -124,8 +132,17 @@ public class InstituicaoFragment extends Fragment{
         final TextView more_money_two = (TextView) view.findViewById(R.id.more_money_two);
         final TextView more_money_three = (TextView) view.findViewById(R.id.more_money_three);
         final Button button2 = (Button) view.findViewById(R.id.button2);
-        final ScrollView scrollview = (ScrollView) view.findViewById(R.id.scrollview);
-        int total_carrinho = 0;
+
+
+        lorem.setInterpolator(new OvershootInterpolator());
+        read_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lorem.toggle();
+            }
+        });
+
+
         check_terms = (CheckBox) view.findViewById(R.id.check_terms);
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -401,6 +418,11 @@ public class InstituicaoFragment extends Fragment{
         number_campaign.setText(data.optString("totalCampaigns"+" campanhas"));
         address.setText(institutions.getJSONObject(0).getString("address"));
         limit.setText(data.optString("minimumContribution" + " Doação mínima"));
+        Glide
+                .with(this)
+                .load(data.getString("logo"))
+                .thumbnail(1f)
+                .into(logo_institution);
         TextView lorem;
         TextView textView_int;
 
@@ -416,7 +438,7 @@ public class InstituicaoFragment extends Fragment{
 
     public void addvalueCampaign(String valor){
         finish_contribuir.setVisibility(View.VISIBLE);
-        add_more.setVisibility(View.VISIBLE);
+//        add_more.setVisibility(View.VISIBLE);
         String sum_value = total_value.getText().toString();
         String sum_number  = sum_value.replaceAll("[^0-9]", "");
         String view_number  = valor.replaceAll("[^0-9]", "");

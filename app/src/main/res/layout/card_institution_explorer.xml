@@ -27,12 +27,12 @@
             android:layout_alignStart="@+id/campanhas_list"
             android:layout_below="@+id/instituicao_title"
 
-            >
-<TextView
-    android:layout_width="1dp"
-    android:layout_height="1dp"
-    android:text=""
-    android:id="@+id/institutionID"/>
+                >
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:text=""
+        android:id="@+id/institutionID"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"

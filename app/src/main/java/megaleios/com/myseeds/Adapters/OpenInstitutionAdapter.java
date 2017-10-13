@@ -129,7 +129,7 @@ public class OpenInstitutionAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                         button.setText("");
                         button.setHint("R$ 0,00");
                         button.setVisibility(View.VISIBLE);
-                        fragment.showBottom();
+                       // fragment.showBottom();
                     } else {
                     }
                 }

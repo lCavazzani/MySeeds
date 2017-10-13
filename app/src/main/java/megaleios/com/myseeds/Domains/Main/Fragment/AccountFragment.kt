@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import megaleios.com.myseeds.Domains.ChangePassword.Activity.ChangePasswordActivity
 import megaleios.com.myseeds.Domains.Help.Activity.HelpActivity
 import megaleios.com.myseeds.Domains.Instituicao.Activity.InstituicaoActivity
@@ -32,6 +34,8 @@ class AccountFragment : Fragment() {
     private lateinit var card_terms: CardView
     private lateinit var card_my_cards: CardView
     private lateinit var card_exit: CardView
+    private lateinit var imageView4: ImageView
+
     private var sessionManager: SessionManager? = null
 
     private lateinit var textView6: TextView
@@ -46,17 +50,18 @@ class AccountFragment : Fragment() {
         card_terms = view.findViewById(R.id.card_terms) as CardView
         card_my_cards = view.findViewById(R.id.card_my_cards) as CardView
         card_exit = view.findViewById(R.id.card_exit) as CardView
-
+        imageView4 = view.findViewById(R.id.imageView4) as ImageView
         textView6 = view.findViewById(R.id.textView6) as TextView
         user_email = view.findViewById(R.id.user_email) as TextView
 
         sessionManager = SessionManager(context)
-//        if(sessionManager!!.getUsuario().getFacebookid().equals("")){
-//            card_change_password.visibility = View.GONE;
-//
-//        }
+        if(!sessionManager!!.getUsuario().getFacebookid().equals("")){
+              card_change_password.visibility = View.GONE
+          }
         textView6.setText(sessionManager!!.getUsuario().getFullName())
         user_email.setText(sessionManager!!.getUsuario().getEmail())
+        Glide.with(context).load(sessionManager!!.getUsuario().getPhoto()).into(imageView4)
+
         profileCard.setOnClickListener {
             // Handler code here.
             val i = Intent(activity, ProfileActivity::class.java)
@@ -92,4 +97,12 @@ class AccountFragment : Fragment() {
 
         return view
     }
+
+    override fun onResume() {
+        val sessionManager = SessionManager(context)
+        Glide.with(context).load(sessionManager!!.getUsuario().getPhoto()).into(imageView4)
+        super.onResume()
+    }
+
+
 }

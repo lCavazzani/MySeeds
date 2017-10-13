@@ -101,6 +101,12 @@
             android:theme="@style/AppThemeGrey.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize"
             />
+        <activity
+            android:name=".Domains.HistoryWebView.Activity.HistoryWebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeGrey.NoActionBar"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            />
     </application>
 
 </manifest>

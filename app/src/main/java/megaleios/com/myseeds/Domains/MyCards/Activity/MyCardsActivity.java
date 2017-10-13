@@ -103,7 +103,7 @@ public class MyCardsActivity extends AppCompatActivity {
                 if (scanResult.postalCode != null) {
                     resultDisplayStr += "Postal Code: " + scanResult.postalCode + "\n";
                 }
-                loading.show();
+              //  loading.show();
 
 //                String[] validate = validateCard.getText().toString().split("/");
                 SessionManager sessionManager = new SessionManager(this);

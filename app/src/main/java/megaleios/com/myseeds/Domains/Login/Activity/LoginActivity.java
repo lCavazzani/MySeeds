@@ -3,9 +3,12 @@ package megaleios.com.myseeds.Domains.Login.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
 import megaleios.com.myseeds.Domains.Login.Fragment.LoginFragment;
@@ -16,14 +19,21 @@ import megaleios.com.myseeds.R;
  */
 
 public class LoginActivity extends AppCompatActivity {
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.rootContainer, new LoginFragment()).commit();
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
     }
     public void onScanPress(View v) {
@@ -75,5 +85,10 @@ public class LoginActivity extends AppCompatActivity {
             // resultTextView.setText(resultDisplayStr);
         }
         // else handle other activity results
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

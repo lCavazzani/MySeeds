@@ -91,14 +91,12 @@ public class MyCardsFragment extends Fragment {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
     public void getCards(SessionManager sessionManager) {
-        loading.show();
         RequestService.getCards(getActivity(), sessionManager.getUsuario().getId(), new RequestService.CallbackDefault() {
             @Override
             public void onSuccess(JsonObject result) {
                 Gson googleJson = new Gson();
                 final String jsonData = result.toString();
                 getActivity().runOnUiThread(new Runnable() {
-
                     @Override
                     public void run() {
                         try {
@@ -107,6 +105,7 @@ public class MyCardsFragment extends Fragment {
                             loading.dismiss();
                         } catch (JSONException | IOException e) {
                             e.printStackTrace();
+                            loading.dismiss();
                         }
                     }
                 });
@@ -114,10 +113,12 @@ public class MyCardsFragment extends Fragment {
 
             @Override
             public void onError() {
+                loading.dismiss();
             }
         });
     }
     private void updateDisplay(String jsonData) throws JSONException, IOException {
+        loading.dismiss();
 
         Log.i("CARDS",jsonData);
 

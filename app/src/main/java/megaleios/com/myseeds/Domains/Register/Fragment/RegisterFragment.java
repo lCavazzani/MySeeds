@@ -2,6 +2,7 @@ package megaleios.com.myseeds.Domains.Register.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.internal.TextScale;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.text.TextWatcher;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.JsonObject;
@@ -18,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import megaleios.com.myseeds.Domains.Main.Activity.MainActivity;
+import megaleios.com.myseeds.Domains.Terms.Activity.TermsActivity;
 import megaleios.com.myseeds.Models.Auth;
 import megaleios.com.myseeds.Models.ProfileUser;
 import megaleios.com.myseeds.R;
@@ -48,6 +51,8 @@ public class RegisterFragment extends Fragment {
     @BindView(R.id.input_login)
     TextInputEditText inputLogin;
     Unbinder unbinder;
+    @BindView(R.id.terms_link)
+    TextView terms_link;
     public MaterialDialog loading;
     private Auth auth;
 
@@ -78,7 +83,7 @@ public class RegisterFragment extends Fragment {
             inputConfirmPassword.setVisibility(View.GONE);
         }
 
-        maskPhone = MaskUtil.insert("(##)#####-####", inputMobile);
+        maskPhone = MaskUtil.insert("(##) #####-####", inputMobile);
         inputMobile.addTextChangedListener(maskPhone);
 
         maskCpf = MaskUtil.insert("###.###.###-##", inputCpf);
@@ -161,7 +166,7 @@ public class RegisterFragment extends Fragment {
     public void sendRegister() {
         if (validForm()) {
             loading.show();
-            ProfileUser profileUser = new ProfileUser();
+            final ProfileUser profileUser = new ProfileUser();
             profileUser.setFullName(inputName.getText().toString());
             profileUser.setEmail(inputEmail.getText().toString());
             profileUser.setPassword(inputPassword.getText().toString());
@@ -192,6 +197,8 @@ public class RegisterFragment extends Fragment {
                          //   auth.setPhoto(object.get("photo").getAsString());
                             auth.setCellphone(object.get("cellphone").getAsString());
                             auth.setId(object.get("id").getAsString());
+                            auth.setLogin(profileUser.getLogin());
+                            auth.setFacebookid(facebookid);
 
                             SessionManager sessionManager = new SessionManager(getActivity());
                             sessionManager.createLoginSession(auth);
@@ -223,4 +230,13 @@ public class RegisterFragment extends Fragment {
         Log.e("register", "ok");
 
     }
+
+    @OnClick(R.id.terms_link)
+    public void openTerms(){
+        Intent i = new Intent(getContext(), TermsActivity.class);
+        startActivity(i);
+    }
+
 }
+
+

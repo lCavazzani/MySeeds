@@ -230,16 +230,6 @@
 
             </android.support.v7.widget.CardView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="sans-serif"
-                android:text="myseeds"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="normal" />
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -36,7 +36,6 @@ public class InstituicaoActivity extends AppCompatActivity {
                 .add(R.id.rootContainer, new InstituicaoFragment()).commit();
 
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + "" + "</font>"));
         getWindow().setSoftInputMode(

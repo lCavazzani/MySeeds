@@ -66,8 +66,6 @@ public class LoginFragment extends Fragment {
 
         openRegister.setText(Html.fromHtml(getString(R.string.open_register_text)));
         loading = Core.getLoading(getContext());
-
-
         return view;
     }
 
@@ -94,7 +92,6 @@ public class LoginFragment extends Fragment {
         Intent i = new Intent(getActivity(), RegisterActivity.class);
         i.putExtra("Facebook", "false");
         startActivity(i);
-
     }
 
     @OnClick(R.id.forgot_password)
@@ -204,7 +201,9 @@ public class LoginFragment extends Fragment {
                                 //   auth.setPhoto(object.get("photo").getAsString());
                                 auth.setCellphone(object.get("cellphone").getAsString());
                                 auth.setId(object.get("id").getAsString());
-
+                                auth.setPhoto(socialUser.profilePictureUrl);
+                                auth.setFacebookid(socialUser.userId);
+                                auth.setLogin(object.get("login").getAsString());
                                 SessionManager sessionManager = new SessionManager(getActivity());
                                 sessionManager.createLoginSession(auth);
 

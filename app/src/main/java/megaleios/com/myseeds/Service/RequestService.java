@@ -396,6 +396,24 @@ public class RequestService {
         });
     }
 
+    public static void getHistory(final Context context, String profileId, int page, final CallbackDefault callback) {
+        getJson(context, Config.URL_PATH + "api/v1/MyDonatations/"+profileId+"/1", new FutureCallback<JsonObject>() {
+            @Override
+            public void onCompleted(Exception e, JsonObject result) {
+                //Log.e("result", result.toString());
+                if (e == null) {
+                    if (Core.validar(context, result)) {
+                        callback.onSuccess(result);
+                    } else {
+                        callback.onError();
+                    }
+                } else {
+                    Core.getDialog(context, e.getMessage()).show();
+                    callback.onError();
+                }
+            }
+        });
+    }
 
 
 }
