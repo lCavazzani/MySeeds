@@ -12,6 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [onesignal_app_id: "9d952bb3-a827-420a-84d4-1ef49c0c8f6c",
+                                // Project number pulled from dashboard, local value is ignored.
+                                onesignal_google_project_number: "REMOTE"]
     }
     buildTypes {
         release {
@@ -50,6 +53,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.mikhaellopez:circularimageview:3.0.2'
     compile 'at.blogc:expandabletextview:1.0.4'
+    compile 'com.onesignal:OneSignal:[3.6.2, 3.99.99]'
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
