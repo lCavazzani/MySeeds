@@ -11,13 +11,6 @@ import com.onesignal.OneSignal;
  */
 
 public class MySeedsApp extends Application {
-
-    @Override
-    protected void attachBaseContext(Context context) {
-        super.attachBaseContext(context);
-        MultiDex.install(context);
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,8 +18,11 @@ public class MySeedsApp extends Application {
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .init();
-        // Call syncHashedEmail anywhere in your app if you have the user's email.
-        // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
-        // OneSignal.syncHashedEmail(userEmail);
     }
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+        MultiDex.install(context);
+    }
+
 }
